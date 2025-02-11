@@ -342,7 +342,7 @@ public async Task<ActionResult> Register(RegisterViewModel model)
             }
 
             // Generate the token and send it
-            if (!await _signInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
+            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
             {
                 return View("Error");
             }
