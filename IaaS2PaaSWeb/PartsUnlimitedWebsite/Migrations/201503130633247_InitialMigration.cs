@@ -218,76 +218,76 @@ namespace PartsUnlimitedWebsite.Migrations
                 });
             
             migrationBuilder.AddForeignKey(
-                "AspNetRoleClaims",
-                "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                new[] { "RoleId" },
-                "AspNetRoles",
-                new[] { "Id" },
-                cascadeDelete: false);
+                name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId",
+                principalTable: "AspNetRoles",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "AspNetUserClaims",
-                "FK_AspNetUserClaims_AspNetUsers_UserId",
-                new[] { "UserId" },
-                "AspNetUsers",
-                new[] { "Id" },
-                cascadeDelete: false);
+                name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "AspNetUserLogins",
-                "FK_AspNetUserLogins_AspNetUsers_UserId",
-                new[] { "UserId" },
-                "AspNetUsers",
-                new[] { "Id" },
-                cascadeDelete: false);
+                name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "CartItem",
-                "FK_CartItem_Product_ProductId",
-                new[] { "ProductId" },
-                "Product",
-                new[] { "ProductId" },
-                cascadeDelete: false);
+                name: "FK_CartItem_Product_ProductId",
+                table: "CartItem",
+                column: "ProductId",
+                principalTable: "Product",
+                principalColumn: "ProductId",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "OrderDetail",
-                "FK_OrderDetail_Order_OrderId",
-                new[] { "OrderId" },
-                "Order",
-                new[] { "OrderId" },
-                cascadeDelete: false);
+                name: "FK_OrderDetail_Order_OrderId",
+                table: "OrderDetail",
+                column: "OrderId",
+                principalTable: "Order",
+                principalColumn: "OrderId",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "OrderDetail",
-                "FK_OrderDetail_Product_ProductId",
-                new[] { "ProductId" },
-                "Product",
-                new[] { "ProductId" },
-                cascadeDelete: false);
+                name: "FK_OrderDetail_Product_ProductId",
+                table: "OrderDetail",
+                column: "ProductId",
+                principalTable: "Product",
+                principalColumn: "ProductId",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "Product",
-                "FK_Product_Category_CategoryId",
-                new[] { "CategoryId" },
-                "Category",
-                new[] { "CategoryId" },
-                cascadeDelete: false);
+                name: "FK_Product_Category_CategoryId",
+                table: "Product",
+                column: "CategoryId",
+                principalTable: "Category",
+                principalColumn: "CategoryId",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "Raincheck",
-                "FK_Raincheck_Store_StoreId",
-                new[] { "StoreId" },
-                "Store",
-                new[] { "StoreId" },
-                cascadeDelete: false);
+                name: "FK_Raincheck_Store_StoreId",
+                table: "Raincheck",
+                column: "StoreId",
+                principalTable: "Store",
+                principalColumn: "StoreId",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "Raincheck",
-                "FK_Raincheck_Product_ProductId",
-                new[] { "ProductId" },
-                "Product",
-                new[] { "ProductId" },
-                cascadeDelete: false);
+                name: "FK_Raincheck_Product_ProductId",
+                table: "Raincheck",
+                column: "ProductId",
+                principalTable: "Product",
+                principalColumn: "ProductId",
+                onDelete: ReferentialAction.Restrict);
         }
         
         protected override void Down(MigrationBuilder migrationBuilder)
