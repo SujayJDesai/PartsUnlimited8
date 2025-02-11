@@ -282,8 +282,10 @@ namespace PartsUnlimited.Controllers
             {
                 return View("Error");
             }
-            var userLogins = await UserManager.GetLoginsAsync(user.Id);
-            var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
+            var userLogins = await _userManager.GetLoginsAsync(user);
+            var otherLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync())
+                .Where(auth => userLogins.All(ul => auth.Name != ul.LoginProvider))
+                .ToList();
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
             return View(new ManageLoginsViewModel
             {
@@ -296,10 +298,12 @@ namespace PartsUnlimited.Controllers
         // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LinkLogin(string provider)
+        public IActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
-            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            var redirectUrl = Url.Action("LinkLoginCallback", "Manage");
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
+            return new ChallengeResult(provider, properties);
         }
 
         //
@@ -312,12 +316,12 @@ namespace PartsUnlimited.Controllers
                 return View("Error");
             }
 
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
+            var info = await _signInManager.GetExternalLoginInfoAsync(await _userManager.GetUserIdAsync(user));
+            if (info == null)
             {
                 return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
             }
-            var result = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
+            var result = await _userManager.AddLoginAsync(user, info);
             var message = result.Succeeded ? ManageMessageId.AddLoginSuccess : ManageMessageId.Error;
             return RedirectToAction("ManageLogins", new { Message = message });
         }
@@ -328,7 +332,7 @@ namespace PartsUnlimited.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError("", error.Description);
             }
         }
 
@@ -346,15 +350,7 @@ namespace PartsUnlimited.Controllers
 
         private async Task<ApplicationUser> GetCurrentUserAsync()
         {
-            return await UserManager.FindByIdAsync(User.Identity.GetUserId());
-        }
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
+            return await _userManager.GetUserAsync(User);
         }
         #endregion
     }
