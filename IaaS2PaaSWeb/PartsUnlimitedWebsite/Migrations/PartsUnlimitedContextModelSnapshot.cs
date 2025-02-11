@@ -91,30 +91,30 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Property<string>("SecurityStamp");
                         b.Property<bool>("TwoFactorEnabled");
                         b.Property<string>("UserName");
-                        b.Key("Id");
-                        b.ForRelational().Table("AspNetUsers");
+                        b.HasKey("Id");
+                        b.ToTable("AspNetUsers");
                     });
-                
+
                 modelBuilder.Entity("PartsUnlimited.Models.CartItem", b =>
                     {
                         b.Property<string>("CartId");
                         b.Property<int>("CartItemId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<int>("Count");
                         b.Property<DateTime>("DateCreated");
                         b.Property<int>("ProductId");
-                        b.Key("CartItemId");
+                        b.HasKey("CartItemId");
                     });
-                
+
                 modelBuilder.Entity("PartsUnlimited.Models.Category", b =>
                     {
                         b.Property<int>("CategoryId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<string>("Description");
                         b.Property<string>("Name");
-                        b.Key("CategoryId");
+                        b.HasKey("CategoryId");
                     });
-                
+
                 modelBuilder.Entity("PartsUnlimited.Models.Order", b =>
                     {
                         b.Property<string>("Address");
@@ -124,26 +124,26 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Property<string>("Name");
                         b.Property<DateTime>("OrderDate");
                         b.Property<int>("OrderId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<string>("Phone");
                         b.Property<string>("PostalCode");
                         b.Property<string>("State");
                         b.Property<decimal>("Total");
                         b.Property<string>("Username");
-                        b.Key("OrderId");
+                        b.HasKey("OrderId");
                     });
-                
+
                 modelBuilder.Entity("PartsUnlimited.Models.OrderDetail", b =>
                     {
                         b.Property<int>("OrderDetailId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<int>("OrderId");
                         b.Property<int>("ProductId");
                         b.Property<int>("Quantity");
                         b.Property<decimal>("UnitPrice");
-                        b.Key("OrderDetailId");
+                        b.HasKey("OrderDetailId");
                     });
-                
+
                 modelBuilder.Entity("PartsUnlimited.Models.Product", b =>
                     {
                         b.Property<int>("CategoryId");
@@ -151,30 +151,30 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Property<decimal>("Price");
                         b.Property<string>("ProductArtUrl");
                         b.Property<int>("ProductId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<decimal>("SalePrice");
                         b.Property<string>("Title");
-                        b.Key("ProductId");
+                        b.HasKey("ProductId");
                     });
-                
+
                 modelBuilder.Entity("PartsUnlimited.Models.Raincheck", b =>
                     {
                         b.Property<string>("Name");
                         b.Property<int>("ProductId");
                         b.Property<int>("Quantity");
                         b.Property<int>("RaincheckId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<double>("SalePrice");
                         b.Property<int>("StoreId");
-                        b.Key("RaincheckId");
+                        b.HasKey("RaincheckId");
                     });
-                
+
                 modelBuilder.Entity("PartsUnlimited.Models.Store", b =>
                     {
                         b.Property<string>("Name");
                         b.Property<int>("StoreId")
-                            .GenerateValueOnAdd();
-                        b.Key("StoreId");
+                            .ValueGeneratedOnAdd();
+                        b.HasKey("StoreId");
                     });
                 
                 builder.Entity("Microsoft.AspNet.Identity.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
