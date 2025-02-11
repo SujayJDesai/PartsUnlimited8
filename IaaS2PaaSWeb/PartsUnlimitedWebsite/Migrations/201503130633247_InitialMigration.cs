@@ -51,15 +51,19 @@ namespace PartsUnlimitedWebsite.Migrations
                 table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
             });
             
-            migrationBuilder.CreateTable("AspNetUserLogins",
-                c => new
-                    {
-                        LoginProvider = c.String(),
-                        ProviderKey = c.String(),
-                        ProviderDisplayName = c.String(),
-                        UserId = c.String()
-                    })
-                .PrimaryKey("PK_AspNetUserLogins", t => new { t.LoginProvider, t.ProviderKey });
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(nullable: true),
+                    ProviderKey = table.Column<string>(nullable: true),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                });
             
             migrationBuilder.CreateTable("AspNetUserRoles",
                 c => new
