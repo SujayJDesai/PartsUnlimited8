@@ -1,12 +1,13 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Metadata;
+using Microsoft.Data.Entity.Relational.Migrations.Infrastructure;
 using PartsUnlimited.Models;
 using System;
 using PartsUnlimited.Data;
 
 namespace PartsUnlimitedWebsite.Migrations
 {
-    [DbContext(typeof(PartsUnlimitedContext))]
+    [ContextType(typeof(PartsUnlimitedContext))]
     public class PartsUnlimitedContextModelSnapshot : ModelSnapshot
     {
         public override IModel Model
