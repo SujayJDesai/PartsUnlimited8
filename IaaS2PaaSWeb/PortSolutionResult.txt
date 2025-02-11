@@ -1,0 +1,2097 @@
+==========
+References
+==========
+PartsUnlimited
+PartsUnlimited.Utils
+System.Threading.Tasks
+PartsUnlimited.Models
+System
+PartsUnlimited.Security
+PartsUnlimited.Areas.Admin
+System.Security.Claims
+System.Web.Routing
+<global namespace>
+System.Reflection
+PartsUnlimited.Recommendations
+PartsUnlimited.ProductSearch
+PartsUnlimited.Areas.Admin.Controllers
+System.Linq
+PartsUnlimited.ViewModels
+System.Collections.Generic
+System.Runtime.Caching
+System.Threading
+PartsUnlimited.Hubs
+PartsUnlimited.Controllers
+System.Web
+System.Configuration
+System.Globalization
+System.ComponentModel.DataAnnotations
+System.Web.ModelBinding
+System.Runtime.InteropServices
+System.Runtime.CompilerServices
+System.Net.Http
+System.Text
+System.Net.Http.Headers
+System.Web.Optimization
+System.Web.Mvc
+Microsoft.AspNet.Identity
+System.Data.Entity
+Microsoft.AspNet.Identity.EntityFramework
+Microsoft.AspNet.Identity.Owin
+Microsoft.AspNet.SignalR
+Microsoft.Owin
+Microsoft.Owin.Security.Cookies
+Microsoft.Owin.Security.DataProtection
+Microsoft.Owin.Security.Facebook
+Microsoft.Owin.Security.Google
+Microsoft.Owin.Security.MicrosoftAccount
+Microsoft.Owin.Security.Twitter
+Microsoft.Practices.Unity
+Owin
+System.Web.Http
+WebActivatorEx
+Swashbuckle.Application
+Unity.WebApi
+Unity.Mvc4
+Microsoft.Owin.Security
+Microsoft.AspNet.SignalR.Hubs
+System.Data.Entity.Migrations
+System.Data.Entity.Infrastructure
+Newtonsoft.Json
+System.Web.Configuration
+project.all
+
+===============
+DownloadedFiles
+===============
+project.all.json
+system.web.configuration.json
+microsoft.owin.security.json
+system.web.http.json
+owin.json
+microsoft.practices.unity.json
+microsoft.owin.security.google.json
+microsoft.owin.security.dataprotection.json
+microsoft.owin.security.cookies.json
+microsoft.owin.json
+microsoft.aspnet.identity.owin.json
+system.data.entity.json
+microsoft.aspnet.identity.json
+system.web.mvc.json
+system.net.http.json
+system.configuration.json
+system.web.json
+system.runtime.caching.json
+system.web.routing.json
+
+==============
+ProjectResults
+==============
+----------------------
+Showing results for: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net8.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+Microsoft.Owin.Security.Google,->3.1.0
+Respond,->1.4.2
+Microsoft.Owin.Security.Twitter,->3.1.0
+Microsoft.AspNet.Identity.EntityFramework,->2.2.1
+Swashbuckle,->5.6.0
+Microsoft.Owin.Security.MicrosoftAccount,->3.1.0
+Microsoft.AspNet.WebApi,->5.2.3
+Microsoft.AspNet.SignalR.Owin,->1.2.2
+Microsoft.AspNet.SignalR.SystemWeb,->2.2.2
+Microsoft.AspNet.Identity.Owin,->2.2.1
+Unity,->4.0.1
+Microsoft.Owin.Security.Facebook,->3.1.0
+Modernizr,->2.8.3
+Microsoft.DependencyValidation.Analyzers,->0.11.0
+bootstrap,->5.3.1
+CommonServiceLocator,->2.0.7
+Microsoft.jQuery.Unobtrusive.Validation,->4.0.0
+jQuery,->3.7.0
+jQuery.UI.Combined,->1.13.0
+Microsoft.AspNet.SignalR.JS,->2.4.3
+Microsoft.AspNet.WebApi.Client,->6.0.0
+jQuery.Validation,->1.19.5
+Newtonsoft.Json,->13.0.3
+EntityFramework,->6.5.1
+Microsoft.AspNet.SignalR,->2.4.3
+---------------------------
+Action packages:
+---------------------------
+Microsoft.AspNetCore.SystemWebAdapters,1.4.0
+System.Runtime.Caching,*
+Unity,*
+Microsoft.AspNetCore.Owin,6.0.29
+System.Configuration.ConfigurationManager,*
+Microsoft.AspNetCore.Authentication.Google,*
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/HomeController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/DefaultShippingTaxCalculator.cs
+---------------------------
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/SignalRDependencyResolver.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/Controllers/RaincheckController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/FilterConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/Controllers/OrdersController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Project
+Action Name: MigrateConfig
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/OrdersController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/UnityConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Global.asax.cs
+---------------------------
+
+Action Type: Class
+Action Name: RemoveBaseClass
+Action Value: IHttpHandler
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: AddExpression
+Action Value: RequestDelegate_next=null;
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: CreateConstructor
+Action Value: {"types":"RequestDelegate","identifiers":"next"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: ChangeMethodName
+Action Value: {"existingMethodName":"ProcessRequest","newMethodName":"Invoke"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 1
+
+Action Type: Class
+Action Name: ReplaceMethodModifiers
+Action Value: {"methodName":"Invoke","modifiers":"publicasync"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 1
+
+Action Type: Class
+Action Name: ChangeMethodToReturnTaskType
+Action Value: Invoke
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Routing
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Routing
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: System.Threading.Tasks
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/Startup.Auth.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authentication.Cookies
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.Cookies
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.DataProtection
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.DataProtection
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authentication.Google
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.Google
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Models/ManageViewModels.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Startup.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/Controllers/StoreManagerController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/ViewModels/EditProductViewModel.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/PartsUnlimitedTelemetryInitializer.cs
+---------------------------
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/ConfigurationHelpers.cs
+---------------------------
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/AdminAreaRegistration.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/Controllers/AdminController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Models/AccountViewModels.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/CheckoutController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/ShoppingCartController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/RouteConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Routing
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Routing
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/Controllers/CustomerController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Bootstrapper.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/HtmlHelperExtensions.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/RecommendationsController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/LayoutDataAttribute.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/WebApiConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Models/ShoppingCart.cs
+---------------------------
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: HttpContext
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/ManageController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/AccountController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/StoreController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/IdentityConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/SearchController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+
+----------------------
+Showing results for: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/PartsUnlimitedWebsite.csproj
+----------------------
+---------------------------
+Target Versions:
+---------------------------
+net8.0
+---------------------------
+Source Versions:
+---------------------------
+net48
+---------------------------
+Upgrade packages:
+---------------------------
+Microsoft.Owin.Security.Google,->3.1.0
+Respond,->1.4.2
+Microsoft.Owin.Security.Twitter,->3.1.0
+Microsoft.AspNet.Identity.EntityFramework,->2.2.1
+Swashbuckle,->5.6.0
+Microsoft.Owin.Security.MicrosoftAccount,->3.1.0
+Microsoft.AspNet.WebApi,->5.2.3
+Microsoft.AspNet.SignalR.Owin,->1.2.2
+Microsoft.AspNet.SignalR.SystemWeb,->2.2.2
+Microsoft.AspNet.Identity.Owin,->2.2.1
+Unity,->4.0.1
+Microsoft.Owin.Security.Facebook,->3.1.0
+Modernizr,->2.8.3
+Microsoft.DependencyValidation.Analyzers,->0.11.0
+bootstrap,->5.3.1
+CommonServiceLocator,->2.0.7
+Microsoft.jQuery.Unobtrusive.Validation,->4.0.0
+jQuery,->3.7.0
+jQuery.UI.Combined,->1.13.0
+Microsoft.AspNet.SignalR.JS,->2.4.3
+Microsoft.AspNet.WebApi.Client,->6.0.0
+jQuery.Validation,->1.19.5
+Newtonsoft.Json,->13.0.3
+EntityFramework,->6.5.1
+Microsoft.AspNet.SignalR,->2.4.3
+---------------------------
+Action packages:
+---------------------------
+Microsoft.AspNetCore.SystemWebAdapters,1.4.0
+System.Runtime.Caching,*
+Unity,*
+Microsoft.AspNetCore.Owin,6.0.29
+System.Configuration.ConfigurationManager,*
+Microsoft.AspNetCore.Authentication.Google,*
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/HomeController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/DefaultShippingTaxCalculator.cs
+---------------------------
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/SignalRDependencyResolver.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/Controllers/RaincheckController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/FilterConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/Controllers/OrdersController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: Project
+---------------------------
+
+Action Type: Project
+Action Name: ArchiveFiles
+Action Value: BundleConfig.cs,FilterConfig.cs,RouteConfig.cs,WebApiConfig.cs,global.asax.cs,global.asax,AssemblyInfo.cs,packages.config
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Project
+Action Name: MigrateConfig
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: ProjectFile
+Action Name: MigrateProjectFile
+Action Value: 
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/OrdersController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/UnityConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Global.asax.cs
+---------------------------
+
+Action Type: Class
+Action Name: RemoveBaseClass
+Action Value: IHttpHandler
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: AddExpression
+Action Value: RequestDelegate_next=null;
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: CreateConstructor
+Action Value: {"types":"RequestDelegate","identifiers":"next"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Class
+Action Name: ChangeMethodName
+Action Value: {"existingMethodName":"ProcessRequest","newMethodName":"Invoke"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 1
+
+Action Type: Class
+Action Name: ReplaceMethodModifiers
+Action Value: {"methodName":"Invoke","modifiers":"publicasync"}
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 1
+
+Action Type: Class
+Action Name: ChangeMethodToReturnTaskType
+Action Value: Invoke
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Routing
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Routing
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: System.Threading.Tasks
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/Startup.Auth.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authentication.Cookies
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.Cookies
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.DataProtection
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.DataProtection
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Authentication.Google
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.Google
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Models/ManageViewModels.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Startup.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/Controllers/StoreManagerController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/ViewModels/EditProductViewModel.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/PartsUnlimitedTelemetryInitializer.cs
+---------------------------
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/ConfigurationHelpers.cs
+---------------------------
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/AdminAreaRegistration.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/Controllers/AdminController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Models/AccountViewModels.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/CheckoutController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/ShoppingCartController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/RouteConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Routing
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Routing
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Areas/Admin/Controllers/CustomerController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Bootstrapper.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/HtmlHelperExtensions.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/RecommendationsController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Utils/LayoutDataAttribute.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/WebApiConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Practices.Unity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Models/ShoppingCart.cs
+---------------------------
+
+Action Type: Identifier
+Action Name: ReplaceIdentifier
+Action Value: HttpContext
+Times Run: 2
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Http
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/ManageController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/AccountController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity.Owin
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security.OAuth
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.Owin.Security
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/StoreController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/App_Start/IdentityConfig.cs
+---------------------------
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: Microsoft.AspNet.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Identity
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+---------------------------
+Executed Actions for file: /tmp/tempfspartition/QnetTransformArtifacts/MidTransformCode/sourceCode/IaaS2PaaSWeb/PartsUnlimitedWebsite/Controllers/SearchController.cs
+---------------------------
+
+Action Type: Using
+Action Name: AddDirective
+Action Value: Microsoft.AspNetCore.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+Action Type: Using
+Action Name: RemoveDirective
+Action Value: System.Web.Mvc
+Times Run: 1
+Executions With Error: 0
+Invalid Executions: 0
+
+
+
+===========
+BuildErrors
+===========
+
+

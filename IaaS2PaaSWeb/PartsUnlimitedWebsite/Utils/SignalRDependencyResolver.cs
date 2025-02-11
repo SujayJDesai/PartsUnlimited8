@@ -2,7 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.SignalR;
-using Microsoft.Practices.Unity;
+using Unity;
+
 
 namespace PartsUnlimited.Utils
 {

@@ -1,15 +1,16 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Caching;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using Microsoft.AspNet.SignalR;
 using PartsUnlimited.Hubs;
 using PartsUnlimited.Models;
 using PartsUnlimited.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace PartsUnlimited.Areas.Admin.Controllers
 {

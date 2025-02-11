@@ -1,12 +1,14 @@
-﻿using PartsUnlimited.Utils;
+using PartsUnlimited.Utils;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using PartsUnlimited.Models;
 using PartsUnlimited.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+
+using Microsoft.AspNetCore.Identity;
+
 
 namespace PartsUnlimited.Controllers
 {

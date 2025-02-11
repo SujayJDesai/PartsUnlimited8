@@ -1,10 +1,11 @@
-﻿using System.Data.Entity;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using PartsUnlimited.Models;
 using PartsUnlimited.Recommendations;
 using PartsUnlimited.Utils;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace PartsUnlimited.Controllers
 {

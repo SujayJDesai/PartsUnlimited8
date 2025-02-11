@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Runtime.Caching;
-using System.Web.Mvc;
 using PartsUnlimited.Models;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace PartsUnlimited.Utils
 {

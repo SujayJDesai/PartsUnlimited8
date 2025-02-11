@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using Microsoft.Owin.Security;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace PartsUnlimited.Models
 {

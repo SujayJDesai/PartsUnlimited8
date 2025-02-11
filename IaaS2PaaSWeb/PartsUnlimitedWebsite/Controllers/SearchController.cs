@@ -1,6 +1,7 @@
-﻿using System.Threading.Tasks;
-using System.Web.Mvc;
+using System.Threading.Tasks;
 using PartsUnlimited.ProductSearch;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace PartsUnlimited.Controllers
 {

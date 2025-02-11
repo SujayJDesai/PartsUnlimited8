@@ -1,19 +1,24 @@
-﻿using System;
+using System;
 using System.Data.Entity;
-using System.Web;
 using System.Web.Http;
-using System.Web.Mvc;
 using System.Web.Optimization;
-using System.Web.Routing;
-using Microsoft.Practices.Unity;
 using PartsUnlimited.Utils;
 using Unity.Mvc4;
+using Microsoft.AspNetCore.Mvc;
+
+using Microsoft.AspNetCore.Routing;
+
+using Unity;
+
+using Microsoft.AspNetCore.Http;
+
+using System.Threading.Tasks;
+
 
 namespace PartsUnlimited
 {
-    public class Global : HttpApplication
-    {
-        internal static IUnityContainer UnityContainer;
+    public class Global     {
+RequestDelegate _next = null;        internal static IUnityContainer UnityContainer;
 
         protected void Application_Start(object sender, EventArgs e)
         {
@@ -28,5 +33,5 @@ namespace PartsUnlimited
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-    }
+publicGlobal(RequestDelegatenext){}    }
 }

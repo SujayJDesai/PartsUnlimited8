@@ -1,11 +1,13 @@
-﻿using System;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using PartsUnlimited.Models;
+using Microsoft.AspNetCore.Mvc;
+
+using Microsoft.AspNetCore.Identity;
+
 
 namespace PartsUnlimited.Controllers
 {

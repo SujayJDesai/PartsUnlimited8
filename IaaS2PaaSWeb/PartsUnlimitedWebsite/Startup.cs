@@ -1,9 +1,8 @@
-//TODO Application Insights - Uncomment
-//using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.Owin;
-using Owin;
 using PartsUnlimited;
 using System.Web.Configuration;
+using Microsoft.AspNetCore.Owin;
+using Microsoft.Owin;
+using Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
 
