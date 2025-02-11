@@ -216,8 +216,8 @@ public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                var user = await UserManager.FindByNameAsync(model.Email);
+                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -225,11 +225,17 @@ public async Task<ActionResult> Register(RegisterViewModel model)
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                string code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { code = code }, protocol: Request.Scheme);
+                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { code = code }, protocol: Request.Url.Scheme);
 
-                // You may want to use a proper email sender service here
-                await _userManager.SendEmailAsync(user, "Reset Password", $"Please reset your password by clicking <a href='{callbackUrl}'>here</a>");
+                var email = new IdentityMessage
+                {
+                    Destination = model.Email,
+                    Body = string.Format("Please reset your password by clicking <a href=\"{0}\">here</a>", callbackUrl),
+                    Subject = "Reset Password"
+                };
+
+                await UserManager.SendEmailAsync(user.Id, "Reset Password", string.Format("Please reset your password by clicking <a href=\"{0}\">here</a>", callbackUrl));
 
 #if !DEMO
                 return RedirectToAction("ForgotPasswordConfirmation");
@@ -240,7 +246,7 @@ public async Task<ActionResult> Register(RegisterViewModel model)
 #endif
             }
 
-            ModelState.AddModelError("", $"We could not locate an account with email : {model.Email}");
+            ModelState.AddModelError("", string.Format("We could not locate an account with email : {0}", model.Email));
 
             // If we got this far, something failed, redisplay form
             return View(model);
