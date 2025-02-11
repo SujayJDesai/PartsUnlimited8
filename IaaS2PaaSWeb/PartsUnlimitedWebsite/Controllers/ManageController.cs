@@ -84,9 +84,9 @@ namespace PartsUnlimited.Controllers
             }
             // Generate the token and send it
             var user = await GetCurrentUserAsync();
-            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.Number);
+            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(user.Id, model.Number);
 
-            await _userManager.SendSmsAsync(user, string.Format("Your security code is: {0}", code));
+            await UserManager.SendSmsAsync(user.Id, string.Format("Your security code is: {0}", code));
 
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
@@ -100,8 +100,8 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await _userManager.SetTwoFactorEnabledAsync(user, true);
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                await UserManager.SetTwoFactorEnabledAsync(user.Id, true);
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
             return RedirectToAction("Index", "Manage");
         }
@@ -115,8 +115,8 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await _userManager.SetTwoFactorEnabledAsync(user, false);
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                await UserManager.SetTwoFactorEnabledAsync(user.Id, false);
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
             return RedirectToAction("Index", "Manage");
         }
@@ -128,7 +128,7 @@ namespace PartsUnlimited.Controllers
             // This code allows you exercise the flow without actually sending codes
             // For production use please register a SMS provider in IdentityConfig and generate a code here.
 #if DEMO
-            ViewBag.Code = await _userManager.GenerateChangePhoneNumberTokenAsync(await GetCurrentUserAsync(), phoneNumber);
+            ViewBag.Code = await UserManager.GenerateChangePhoneNumberTokenAsync((await GetCurrentUserAsync()).Id, phoneNumber);
 #endif
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
@@ -146,10 +146,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await _userManager.ChangePhoneNumberAsync(user, model.PhoneNumber, model.Code);
+                var result = await UserManager.ChangePhoneNumberAsync(user.Id, model.PhoneNumber, model.Code);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
                 }
             }
@@ -165,10 +165,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await _userManager.SetPhoneNumberAsync(user, null);
+                var result = await UserManager.SetPhoneNumberAsync(user.Id, null);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
                 }
             }
@@ -195,10 +195,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                var result = await UserManager.ChangePasswordAsync(user.Id, model.OldPassword, model.NewPassword);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
                 AddErrors(result);
@@ -228,10 +228,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
+                var result = await UserManager.AddPasswordAsync(user.Id, model.NewPassword);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.SetPasswordSuccess });
                 }
                 AddErrors(result);
@@ -249,7 +249,7 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: true);
             }
             return RedirectToAction("Index", "Manage");
         }
@@ -263,7 +263,7 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await _signInManager.SignInAsync(user, isPersistent: false);
+                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
             }
             return RedirectToAction("Index", "Manage");
         }
