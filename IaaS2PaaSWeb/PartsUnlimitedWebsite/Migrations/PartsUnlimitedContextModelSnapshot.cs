@@ -75,7 +75,7 @@ namespace PartsUnlimitedWebsite.Migrations
                     {
                         b.Property<int>("AccessFailedCount");
                         b.Property<string>("ConcurrencyStamp")
-                            .ConcurrencyToken();
+                            .IsConcurrencyToken();
                         b.Property<string>("Email");
                         b.Property<bool>("EmailConfirmed");
                         b.Property<string>("Id")
