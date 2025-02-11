@@ -7,6 +7,7 @@ using PartsUnlimited.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
 
 
 namespace PartsUnlimited.Controllers
@@ -54,8 +55,8 @@ namespace PartsUnlimited.Controllers
 
             try
             {
-                if (string.Equals(formCollection.GetValues("PromoCode").FirstOrDefault(), PromoCode,
-                    StringComparison.OrdinalIgnoreCase) == false)
+            if (string.Equals(formCollection["PromoCode"].FirstOrDefault(), PromoCode,
+                StringComparison.OrdinalIgnoreCase) == false)
                 {
                     return View(order);
                 }
