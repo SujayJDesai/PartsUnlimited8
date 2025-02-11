@@ -140,39 +140,45 @@ namespace PartsUnlimited.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+public async Task<ActionResult> Register(RegisterViewModel model)
+{
+    if (ModelState.IsValid)
+    {
+        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        var result = await _userManager.CreateAsync(user, model.Password);
+        if (result.Succeeded)
         {
-            if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    //Bug: Remember browser option missing?
-                    //Uncomment this and comment the later part if account verification is not needed.
-                    //await SignInManager.SignInAsync(user, isPersistent: false);
+            //Bug: Remember browser option missing?
+            //Uncomment this and comment the later part if account verification is not needed.
+            //await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+            // Generate the token and send it
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Scheme);
 
-                    await UserManager.SendEmailAsync(user.Id, "Confirm your account", string.Format("Please confirm your account by clicking <a href=\"{0}\">here</a>", callbackUrl));
+            // You need to implement your own email sending logic here
+            // For example, you could use IEmailSender interface
+            // await _emailSender.SendEmailAsync(user.Email, "Confirm your account",
+            //     $"Please confirm your account by clicking <a href='{callbackUrl}'>here</a>");
+
+            // For now, we'll just log the email content
+            _logger.LogInformation($"Email confirmation link for {user.Email}: {callbackUrl}");
 
 #if !DEMO
-                    return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home");
 #else
-                    //To display the email link in a friendly page instead of sending email
-                    ViewBag.Link = callbackUrl;
-                    return View("DemoLinkDisplay");
+            //To display the email link in a friendly page instead of sending email
+            ViewBag.Link = callbackUrl;
+            return View("DemoLinkDisplay");
 #endif
-                }
-                AddErrors(result);
-            }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
         }
+        AddErrors(result);
+    }
+
+    // If we got this far, something failed, redisplay form
+    return View(model);
+}
 
         //
         // GET: /Account/ConfirmEmail
