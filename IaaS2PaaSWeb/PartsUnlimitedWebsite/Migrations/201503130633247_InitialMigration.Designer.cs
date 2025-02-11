@@ -37,10 +37,10 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Property<string>("ClaimType");
                         b.Property<string>("ClaimValue");
                         b.Property<int>("Id")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<string>("RoleId");
-                        b.Key("Id");
-                        b.ForRelational().Table("AspNetRoleClaims");
+                        b.HasKey("Id");
+                        b.ToTable("AspNetRoleClaims");
                     });
                 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -48,10 +48,10 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Property<string>("ClaimType");
                         b.Property<string>("ClaimValue");
                         b.Property<int>("Id")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<string>("UserId");
-                        b.Key("Id");
-                        b.ForRelational().Table("AspNetUserClaims");
+                        b.HasKey("Id");
+                        b.ToTable("AspNetUserClaims");
                     });
                 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -72,15 +72,15 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.ForRelational().Table("AspNetUserRoles");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.ApplicationUser", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.ApplicationUser", b =>
                     {
                         b.Property<int>("AccessFailedCount");
                         b.Property<string>("ConcurrencyStamp")
-                            .ConcurrencyToken();
+                            .IsConcurrencyToken();
                         b.Property<string>("Email");
                         b.Property<bool>("EmailConfirmed");
                         b.Property<string>("Id")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<bool>("LockoutEnabled");
                         b.Property<DateTimeOffset?>("LockoutEnd");
                         b.Property<string>("Name");
@@ -92,31 +92,31 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Property<string>("SecurityStamp");
                         b.Property<bool>("TwoFactorEnabled");
                         b.Property<string>("UserName");
-                        b.Key("Id");
-                        b.ForRelational().Table("AspNetUsers");
+                        b.HasKey("Id");
+                        b.ToTable("AspNetUsers");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.CartItem", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.CartItem", b =>
                     {
                         b.Property<string>("CartId");
                         b.Property<int>("CartItemId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<int>("Count");
                         b.Property<DateTime>("DateCreated");
                         b.Property<int>("ProductId");
-                        b.Key("CartItemId");
+                        b.HasKey("CartItemId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Category", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Category", b =>
                     {
                         b.Property<int>("CategoryId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<string>("Description");
                         b.Property<string>("Name");
-                        b.Key("CategoryId");
+                        b.HasKey("CategoryId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Order", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Order", b =>
                     {
                         b.Property<string>("Address");
                         b.Property<string>("City");
@@ -125,94 +125,108 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Property<string>("Name");
                         b.Property<DateTime>("OrderDate");
                         b.Property<int>("OrderId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<string>("Phone");
                         b.Property<string>("PostalCode");
                         b.Property<string>("State");
                         b.Property<decimal>("Total");
                         b.Property<string>("Username");
-                        b.Key("OrderId");
+                        b.HasKey("OrderId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.OrderDetail", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.OrderDetail", b =>
                     {
                         b.Property<int>("OrderDetailId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<int>("OrderId");
                         b.Property<int>("ProductId");
                         b.Property<int>("Quantity");
                         b.Property<decimal>("UnitPrice");
-                        b.Key("OrderDetailId");
+                        b.HasKey("OrderDetailId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Product", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Product", b =>
                     {
                         b.Property<int>("CategoryId");
                         b.Property<DateTime>("Created");
                         b.Property<decimal>("Price");
                         b.Property<string>("ProductArtUrl");
                         b.Property<int>("ProductId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<decimal>("SalePrice");
                         b.Property<string>("Title");
-                        b.Key("ProductId");
+                        b.HasKey("ProductId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Raincheck", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Raincheck", b =>
                     {
                         b.Property<string>("Name");
                         b.Property<int>("ProductId");
                         b.Property<int>("Quantity");
                         b.Property<int>("RaincheckId")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<double>("SalePrice");
                         b.Property<int>("StoreId");
-                        b.Key("RaincheckId");
+                        b.HasKey("RaincheckId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Store", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Store", b =>
                     {
                         b.Property<string>("Name");
                         b.Property<int>("StoreId")
-                            .GenerateValueOnAdd();
-                        b.Key("StoreId");
+                            .ValueGeneratedOnAdd();
+                        b.HasKey("StoreId");
                     });
                 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                     {
-                        b.ForeignKey("Microsoft.AspNet.Identity.IdentityRole", "RoleId");
+                        b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
+                            .WithMany()
+                            .HasForeignKey("RoleId");
                     });
                 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.ApplicationUser", "UserId");
+                        b.HasOne("PartsUnlimited.Models.ApplicationUser")
+                            .WithMany()
+                            .HasForeignKey("UserId");
                     });
                 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.ApplicationUser", "UserId");
+                        b.HasOne("PartsUnlimited.Models.ApplicationUser")
+                            .WithMany()
+                            .HasForeignKey("UserId");
                     });
                 
                 builder.Entity("PartsUnlimited.Models.CartItem", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
+                        b.HasOne("PartsUnlimited.Models.Product")
+                            .WithMany()
+                            .HasForeignKey("ProductId");
                     });
                 
                 builder.Entity("PartsUnlimited.Models.OrderDetail", b =>
                     {
                         b.ForeignKey("PartsUnlimited.Models.Order", "OrderId");
-                        b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
+                        b.HasOne("PartsUnlimited.Models.Product")
+                            .WithMany()
+                            .HasForeignKey("ProductId");
                     });
                 
                 builder.Entity("PartsUnlimited.Models.Product", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.Category", "CategoryId");
+                        b.HasOne("PartsUnlimited.Models.Category")
+                            .WithMany()
+                            .HasForeignKey("CategoryId");
                     });
                 
                 builder.Entity("PartsUnlimited.Models.Raincheck", b =>
                     {
                         b.ForeignKey("PartsUnlimited.Models.Store", "StoreId");
-                        b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
+                        b.HasOne("PartsUnlimited.Models.Product")
+                            .WithMany()
+                            .HasForeignKey("ProductId");
                     });
                 
 #pragma warning restore 612, 618
