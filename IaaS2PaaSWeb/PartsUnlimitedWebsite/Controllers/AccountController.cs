@@ -107,18 +107,18 @@ namespace PartsUnlimited.Controllers
 
             
 
-            // The following code protects for brute force attacks against the two factor codes. 
-            // If a user enters incorrect codes for a specified amount of time then the user account 
-            // will be locked out for a specified amount of time. 
+            // The following code protects for brute force attacks against the two factor codes.
+            // If a user enters incorrect codes for a specified amount of time then the user account
+            // will be locked out for a specified amount of time.
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, model.RememberMe, model.RememberBrowser);
+            var result = await _signInManager.TwoFactorSignInAsync(model.Provider, model.Code, model.RememberMe, model.RememberBrowser);
 
-            if (result == SignInStatus.Success)
+            if (result.Succeeded)
             {
                 return RedirectToLocal(model.ReturnUrl);
             }
 
-            if (result == SignInStatus.LockedOut)
+            if (result.IsLockedOut)
             {
                 return View("Lockout");
             }
