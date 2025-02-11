@@ -420,30 +420,30 @@ public async Task<ActionResult> Register(RegisterViewModel model)
             if (ModelState.IsValid)
             {
                 // Get the information about the user from the external login provider
-                var info = await AuthenticationManager.GetExternalLoginInfoAsync();
+                var info = await _signInManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
                     return View("ExternalLoginFailure");
                 }
 
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
-                var result = await UserManager.CreateAsync(user);
+                var result = await _userManager.CreateAsync(user);
 
 #if TESTING
                 //Just for automated testing adding a claim named 'ManageStore' - Not required for production
-                var manageClaim = info.ExternalIdentity.Claims.Where(c => c.Type == Areas.Admin.AdminConstants.ManageStore.Name).FirstOrDefault();
+                var manageClaim = info.Principal.Claims.FirstOrDefault(c => c.Type == Areas.Admin.AdminConstants.ManageStore.Name);
                 if (manageClaim != null)
                 {
-                    await UserManager.AddClaimAsync(user, manageClaim, cancellationToken: Context.RequestAborted);
+                    await _userManager.AddClaimAsync(user, manageClaim);
                 }
 #endif
 
                 if (result.Succeeded)
                 {
-                    result = await UserManager.AddLoginAsync(user.Id, info.Login);
+                    result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
-                        await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                        await _signInManager.SignInAsync(user, isPersistent: false);
                         return RedirectToLocal(returnUrl);
                     }
                 }
