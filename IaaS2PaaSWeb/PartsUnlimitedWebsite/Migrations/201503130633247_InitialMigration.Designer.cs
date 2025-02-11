@@ -199,31 +199,35 @@ namespace PartsUnlimitedWebsite.Migrations
                             .HasForeignKey("UserId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.CartItem", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.CartItem", b =>
                     {
                         b.HasOne("PartsUnlimited.Models.Product")
                             .WithMany()
                             .HasForeignKey("ProductId");
                     });
-                
-                builder.Entity("PartsUnlimited.Models.OrderDetail", b =>
+
+                modelBuilder.Entity("PartsUnlimited.Models.OrderDetail", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.Order", "OrderId");
+                        b.HasOne("PartsUnlimited.Models.Order")
+                            .WithMany()
+                            .HasForeignKey("OrderId");
                         b.HasOne("PartsUnlimited.Models.Product")
                             .WithMany()
                             .HasForeignKey("ProductId");
                     });
-                
-                builder.Entity("PartsUnlimited.Models.Product", b =>
+
+                modelBuilder.Entity("PartsUnlimited.Models.Product", b =>
                     {
                         b.HasOne("PartsUnlimited.Models.Category")
                             .WithMany()
                             .HasForeignKey("CategoryId");
                     });
-                
-                builder.Entity("PartsUnlimited.Models.Raincheck", b =>
+
+                modelBuilder.Entity("PartsUnlimited.Models.Raincheck", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.Store", "StoreId");
+                        b.HasOne("PartsUnlimited.Models.Store")
+                            .WithMany()
+                            .HasForeignKey("StoreId");
                         b.HasOne("PartsUnlimited.Models.Product")
                             .WithMany()
                             .HasForeignKey("ProductId");
