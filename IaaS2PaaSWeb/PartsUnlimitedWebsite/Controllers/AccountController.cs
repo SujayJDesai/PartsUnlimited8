@@ -76,7 +76,8 @@ namespace PartsUnlimited.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
-            var user = await SignInManager.GetVerifiedUserIdAsync();
+            // Require that the user has already logged in via username/password or external login
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
                 return View("Error");
@@ -86,7 +87,7 @@ namespace PartsUnlimited.Controllers
 #if DEMO
             if (user != null)
             {
-                ViewBag.Code = await UserManager.GenerateTwoFactorTokenAsync(user, provider);
+                ViewBag.Code = await _userManager.GenerateTwoFactorTokenAsync(user, provider);
             }
 #endif
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
