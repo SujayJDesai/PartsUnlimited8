@@ -5,37 +5,51 @@ namespace PartsUnlimitedWebsite.Migrations
 {
     public partial class InitialMigration : Migration
     {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.CreateTable("AspNetRoles",
-                c => new
-                    {
-                        Id = c.String(),
-                        ConcurrencyStamp = c.String(),
-                        Name = c.String(),
-                        NormalizedName = c.String()
-                    })
-                .PrimaryKey("PK_AspNetRoles", t => t.Id);
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.CreateTable(
+            name: "AspNetRoles",
+            columns: table => new
+            {
+                Id = table.Column<string>(nullable: true),
+                ConcurrencyStamp = table.Column<string>(nullable: true),
+                Name = table.Column<string>(nullable: true),
+                NormalizedName = table.Column<string>(nullable: true)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+            });
             
-            migrationBuilder.CreateTable("AspNetRoleClaims",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        ClaimType = c.String(),
-                        ClaimValue = c.String(),
-                        RoleId = c.String()
-                    })
-                .PrimaryKey("PK_AspNetRoleClaims", t => t.Id);
+        migrationBuilder.CreateTable(
+            name: "AspNetRoleClaims",
+            columns: table => new
+            {
+                Id = table.Column<int>(nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
+                ClaimType = table.Column<string>(nullable: true),
+                ClaimValue = table.Column<string>(nullable: true),
+                RoleId = table.Column<string>(nullable: true)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+            });
             
-            migrationBuilder.CreateTable("AspNetUserClaims",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        ClaimType = c.String(),
-                        ClaimValue = c.String(),
-                        UserId = c.String()
-                    })
-                .PrimaryKey("PK_AspNetUserClaims", t => t.Id);
+        migrationBuilder.CreateTable(
+            name: "AspNetUserClaims",
+            columns: table => new
+            {
+                Id = table.Column<int>(nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
+                ClaimType = table.Column<string>(nullable: true),
+                ClaimValue = table.Column<string>(nullable: true),
+                UserId = table.Column<string>(nullable: true)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+            });
             
             migrationBuilder.CreateTable("AspNetUserLogins",
                 c => new
