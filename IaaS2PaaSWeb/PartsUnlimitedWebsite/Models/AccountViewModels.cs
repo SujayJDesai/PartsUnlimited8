@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace PartsUnlimited.Models
@@ -19,7 +20,6 @@ namespace PartsUnlimited.Models
     public class ExternalLoginListViewModel
     {
         public string ReturnUrl { get; set; }
-        public IAuthenticationManager AuthenticationManager { get; set; }
     }
 
     public class SendCodeViewModel
