@@ -48,7 +48,7 @@ namespace PartsUnlimited.Controllers
             var userId = _userManager.GetUserId(User);
 
             // If the username isn't the same as the logged in user, return as if the order does not exist
-            if (order == null || !String.Equals(order.Username, username, StringComparison.Ordinal))
+            if (order == null || !String.Equals(order.Username, userId, StringComparison.Ordinal))
             {
                 _telemetry.TrackTrace("Order/Server/UsernameMismatch");
                 return RedirectToAction("Index", new { invalidOrderSearch = id.ToString() });
