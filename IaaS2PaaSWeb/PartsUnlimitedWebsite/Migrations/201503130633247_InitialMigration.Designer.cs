@@ -20,17 +20,16 @@ namespace PartsUnlimitedWebsite.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-                
-                builder.Entity("Microsoft.AspNet.Identity.IdentityRole", b =>
+
+                modelBuilder.Entity<Microsoft.AspNetCore.Identity.IdentityRole>(b =>
                     {
-                        b.Property<string>("ConcurrencyStamp")
-                            .ConcurrencyToken();
-                        b.Property<string>("Id")
-                            .GenerateValueOnAdd();
-                        b.Property<string>("Name");
-                        b.Property<string>("NormalizedName");
-                        b.Key("Id");
-                        b.ForRelational().Table("AspNetRoles");
+                        b.Property<string>("Id").ValueGeneratedOnAdd();
+                        b.Property<string>("ConcurrencyStamp").IsConcurrencyToken();
+                        b.Property<string>("Name").HasMaxLength(256);
+                        b.Property<string>("NormalizedName").HasMaxLength(256);
+
+                        b.HasKey("Id");
+                        b.ToTable("AspNetRoles");
                     });
                 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
