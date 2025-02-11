@@ -116,14 +116,19 @@ namespace PartsUnlimitedWebsite.Migrations
                 })
                 .PrimaryKey("PK_CartItem", t => t.CartItemId);
             
-            migrationBuilder.CreateTable("Category",
-                c => new
-                    {
-                        CategoryId = c.Int(nullable: false, identity: true),
-                        Description = c.String(),
-                        Name = c.String()
-                    })
-                .PrimaryKey("PK_Category", t => t.CategoryId);
+            migrationBuilder.CreateTable(
+                name: "Category",
+                columns: table => new
+                {
+                    CategoryId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Category", x => x.CategoryId);
+                });
             
             migrationBuilder.CreateTable("Order",
                 c => new
