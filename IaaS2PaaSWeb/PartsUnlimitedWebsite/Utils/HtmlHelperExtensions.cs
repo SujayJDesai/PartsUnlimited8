@@ -1,13 +1,13 @@
 using System;
-using System.Web;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Html;
 
 namespace PartsUnlimited.Utils
 {
     public static class HtmlHelperExtensions
     {
-        public static HtmlString Image(this HtmlHelper helper, string src, string alt = null)
+        public static IHtmlContent Image(this IHtmlHelper helper, string src, string alt = null)
         {
             if (string.IsNullOrWhiteSpace(src))
             {
