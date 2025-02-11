@@ -58,7 +58,7 @@ namespace PartsUnlimited.Controllers
             var eventProperties = new Dictionary<string, string>()
                 {
                     {"Id", id.ToString() },
-                    {"Username", username }
+                    {"Username", userId }
                 };
             var costSummary = new OrderCostSummary()
             {
