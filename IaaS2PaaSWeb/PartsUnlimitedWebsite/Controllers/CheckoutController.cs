@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 
 namespace PartsUnlimited.Controllers
@@ -55,14 +56,14 @@ namespace PartsUnlimited.Controllers
 
             try
             {
-            if (string.Equals(formCollection["PromoCode"].FirstOrDefault(), PromoCode,
-                StringComparison.OrdinalIgnoreCase) == false)
+                if (string.Equals(formCollection["PromoCode"].FirstOrDefault(), PromoCode,
+                    StringComparison.OrdinalIgnoreCase) == false)
                 {
                     return View(order);
                 }
                 else
                 {
-                    order.Username = User.Identity.GetUserName();
+                    order.Username = await _userManager.GetUserNameAsync(await _userManager.GetUserAsync(User));
                     order.OrderDate = DateTime.Now;
 
                     //Add the Order
@@ -88,10 +89,10 @@ namespace PartsUnlimited.Controllers
         //
         // GET: /Checkout/Complete
 
-        public ActionResult Complete(int id)
+        public async Task<ActionResult> Complete(int id)
         {
             // Validate customer owns this order
-            var username = User.Identity.GetUserName();
+            var username = await _userManager.GetUserNameAsync(await _userManager.GetUserAsync(User));
 
             Order order = db.Orders.First(
                 o => o.OrderId == id &&
