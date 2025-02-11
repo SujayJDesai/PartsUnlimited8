@@ -190,12 +190,12 @@ public async Task<ActionResult> Register(RegisterViewModel model)
                 return View("Error");
             }
 
-            var user = await SignInManager.UserManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
                 return View("Error");
             }
-            var result = await UserManager.ConfirmEmailAsync(user.Id, code);
+            var result = await _userManager.ConfirmEmailAsync(user, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
