@@ -35,11 +35,11 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             var model = new IndexViewModel
             {
-                HasPassword = await UserManager.HasPasswordAsync(user.Id),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(user.Id),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(user.Id),
-                Logins = await UserManager.GetLoginsAsync(user.Id),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(user.Id)
+                HasPassword = await _userManager.HasPasswordAsync(user),
+                PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
+                TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
+                Logins = await _userManager.GetLoginsAsync(user),
+                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user)
             };
 
             return View(model);
