@@ -71,7 +71,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.ToTable("AspNetUserRoles");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.ApplicationUser", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.ApplicationUser", b =>
                     {
                         b.Property<int>("AccessFailedCount");
                         b.Property<string>("ConcurrencyStamp")
@@ -95,7 +95,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.ForRelational().Table("AspNetUsers");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.CartItem", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.CartItem", b =>
                     {
                         b.Property<string>("CartId");
                         b.Property<int>("CartItemId")
@@ -106,7 +106,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Key("CartItemId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Category", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Category", b =>
                     {
                         b.Property<int>("CategoryId")
                             .GenerateValueOnAdd();
@@ -115,7 +115,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Key("CategoryId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Order", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Order", b =>
                     {
                         b.Property<string>("Address");
                         b.Property<string>("City");
@@ -133,7 +133,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Key("OrderId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.OrderDetail", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.OrderDetail", b =>
                     {
                         b.Property<int>("OrderDetailId")
                             .GenerateValueOnAdd();
@@ -144,7 +144,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Key("OrderDetailId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Product", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Product", b =>
                     {
                         b.Property<int>("CategoryId");
                         b.Property<DateTime>("Created");
@@ -157,7 +157,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Key("ProductId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Raincheck", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Raincheck", b =>
                     {
                         b.Property<string>("Name");
                         b.Property<int>("ProductId");
@@ -169,7 +169,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Key("RaincheckId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Store", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Store", b =>
                     {
                         b.Property<string>("Name");
                         b.Property<int>("StoreId")
@@ -192,23 +192,23 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.ForeignKey("PartsUnlimited.Models.ApplicationUser", "UserId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.CartItem", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.CartItem", b =>
                     {
                         b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.OrderDetail", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.OrderDetail", b =>
                     {
                         b.ForeignKey("PartsUnlimited.Models.Order", "OrderId");
                         b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Product", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Product", b =>
                     {
                         b.ForeignKey("PartsUnlimited.Models.Category", "CategoryId");
                     });
                 
-                builder.Entity("PartsUnlimited.Models.Raincheck", b =>
+                modelBuilder.Entity("PartsUnlimited.Models.Raincheck", b =>
                     {
                         b.ForeignKey("PartsUnlimited.Models.Store", "StoreId");
                         b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
