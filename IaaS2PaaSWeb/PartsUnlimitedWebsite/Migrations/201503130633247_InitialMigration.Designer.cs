@@ -1,24 +1,36 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Metadata;
+using Microsoft.Data.Entity.Relational.Migrations.Infrastructure;
 using PartsUnlimited.Models;
 using System;
 using PartsUnlimited.Data;
 
 namespace PartsUnlimitedWebsite.Migrations
 {
-    [DbContext(typeof(PartsUnlimitedContext))]
-    [Migration("201503130633247_InitialMigration")]
-    public partial class InitialMigration : Migration
+    [ContextType(typeof(PartsUnlimitedContext))]
+    public partial class InitialMigration : IMigrationMetadata
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        string IMigrationMetadata.MigrationId
         {
-            modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
-                .HasAnnotation("Relational:MaxIdentifierLength", 128);
-
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
+            get
+            {
+                return "201503130633247_InitialMigration";
+            }
+        }
+        
+        string IMigrationMetadata.ProductVersion
+        {
+            get
+            {
+                return "7.0.0-beta3-12166";
+            }
+        }
+        
+        IModel IMigrationMetadata.TargetModel
+        {
+            get
+            {
+                var builder = new BasicModelBuilder();
                 
                 builder.Entity("Microsoft.AspNet.Identity.IdentityRole", b =>
                     {
@@ -32,7 +44,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.ForRelational().Table("AspNetRoles");
                     });
                 
-                modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                builder.Entity("Microsoft.AspNet.Identity.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
                     {
                         b.Property<string>("ClaimType");
                         b.Property<string>("ClaimValue");
@@ -43,7 +55,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.ForRelational().Table("AspNetRoleClaims");
                     });
                 
-                modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                builder.Entity("Microsoft.AspNet.Identity.IdentityUserClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
                     {
                         b.Property<string>("ClaimType");
                         b.Property<string>("ClaimValue");
@@ -54,7 +66,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.ForRelational().Table("AspNetUserClaims");
                     });
                 
-                modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                builder.Entity("Microsoft.AspNet.Identity.IdentityUserLogin`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
                     {
                         b.Property<string>("LoginProvider");
                         b.Property<string>("ProviderDisplayName");
@@ -64,7 +76,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.ForRelational().Table("AspNetUserLogins");
                     });
                 
-                modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                builder.Entity("Microsoft.AspNet.Identity.IdentityUserRole`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
                     {
                         b.Property<string>("RoleId");
                         b.Property<string>("UserId");
@@ -178,17 +190,17 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Key("StoreId");
                     });
                 
-                modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                builder.Entity("Microsoft.AspNet.Identity.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
                     {
                         b.ForeignKey("Microsoft.AspNet.Identity.IdentityRole", "RoleId");
                     });
                 
-                modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                builder.Entity("Microsoft.AspNet.Identity.IdentityUserClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
                     {
                         b.ForeignKey("PartsUnlimited.Models.ApplicationUser", "UserId");
                     });
                 
-                modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                builder.Entity("Microsoft.AspNet.Identity.IdentityUserLogin`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
                     {
                         b.ForeignKey("PartsUnlimited.Models.ApplicationUser", "UserId");
                     });
@@ -215,6 +227,8 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
                     });
                 
+                return builder.Model;
+            }
         }
     }
 }
