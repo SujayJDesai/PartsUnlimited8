@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PartsUnlimited.Models;
 using PartsUnlimited.Utils;
 using PartsUnlimited.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 
 
 namespace PartsUnlimited.Controllers
@@ -97,9 +96,9 @@ namespace PartsUnlimited.Controllers
 
         //
         // AJAX: /ShoppingCart/RemoveFromCart/5
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RemoveFromCart([FromUri] int id)
+        public async Task<IActionResult> RemoveFromCart([FromRoute] int id)
         {
 
             // Start timer for save process telemetry
