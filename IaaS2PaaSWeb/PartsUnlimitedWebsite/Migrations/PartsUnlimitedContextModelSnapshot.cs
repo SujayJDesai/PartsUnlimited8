@@ -18,57 +18,57 @@ namespace PartsUnlimitedWebsite.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-                
-                builder.Entity("Microsoft.AspNet.Identity.IdentityRole", b =>
+
+                modelBuilder.Entity("Microsoft.AspNet.Identity.IdentityRole", b =>
                     {
                         b.Property<string>("ConcurrencyStamp")
-                            .ConcurrencyToken();
+                            .IsConcurrencyToken();
                         b.Property<string>("Id")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<string>("Name");
                         b.Property<string>("NormalizedName");
-                        b.Key("Id");
-                        b.ForRelational().Table("AspNetRoles");
+                        b.HasKey("Id");
+                        b.ToTable("AspNetRoles");
                     });
                 
-                builder.Entity("Microsoft.AspNet.Identity.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                modelBuilder.Entity("Microsoft.AspNet.Identity.IdentityRoleClaim`1[[System.String, System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]]", b =>
                     {
                         b.Property<string>("ClaimType");
                         b.Property<string>("ClaimValue");
                         b.Property<int>("Id")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<string>("RoleId");
-                        b.Key("Id");
-                        b.ForRelational().Table("AspNetRoleClaims");
+                        b.HasKey("Id");
+                        b.ToTable("AspNetRoleClaims");
                     });
                 
-                builder.Entity("Microsoft.AspNet.Identity.IdentityUserClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                modelBuilder.Entity("Microsoft.AspNet.Identity.IdentityUserClaim`1[[System.String, System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]]", b =>
                     {
                         b.Property<string>("ClaimType");
                         b.Property<string>("ClaimValue");
                         b.Property<int>("Id")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<string>("UserId");
-                        b.Key("Id");
-                        b.ForRelational().Table("AspNetUserClaims");
+                        b.HasKey("Id");
+                        b.ToTable("AspNetUserClaims");
                     });
                 
-                builder.Entity("Microsoft.AspNet.Identity.IdentityUserLogin`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                modelBuilder.Entity("Microsoft.AspNet.Identity.IdentityUserLogin`1[[System.String, System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]]", b =>
                     {
                         b.Property<string>("LoginProvider");
                         b.Property<string>("ProviderDisplayName");
                         b.Property<string>("ProviderKey");
                         b.Property<string>("UserId");
-                        b.Key("LoginProvider", "ProviderKey");
-                        b.ForRelational().Table("AspNetUserLogins");
+                        b.HasKey("LoginProvider", "ProviderKey");
+                        b.ToTable("AspNetUserLogins");
                     });
                 
-                builder.Entity("Microsoft.AspNet.Identity.IdentityUserRole`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                modelBuilder.Entity("Microsoft.AspNet.Identity.IdentityUserRole`1[[System.String, System.Runtime, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a]]", b =>
                     {
                         b.Property<string>("RoleId");
                         b.Property<string>("UserId");
-                        b.Key("UserId", "RoleId");
-                        b.ForRelational().Table("AspNetUserRoles");
+                        b.HasKey("UserId", "RoleId");
+                        b.ToTable("AspNetUserRoles");
                     });
                 
                 builder.Entity("PartsUnlimited.Models.ApplicationUser", b =>
