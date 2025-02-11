@@ -11,7 +11,7 @@ namespace PartsUnlimited.Utils
         {
             if (string.IsNullOrWhiteSpace(src))
             {
-                throw new ArgumentOutOfRangeException(nameof(src), src, "Must not be null or whitespace");
+                throw new ArgumentOutOfRangeException("src", src, "Must not be null or whitespace");
             }
 
             var img = new TagBuilder("img");
@@ -23,7 +23,7 @@ namespace PartsUnlimited.Utils
                 img.MergeAttribute("alt", alt);
             }
 
-            return new HtmlString(img.RenderSelfClosingTag());
+            return new HtmlString(img.ToString(TagRenderMode.SelfClosing));
         }
 
         private static string GetCdnSource(string src)
