@@ -341,11 +341,29 @@ public async Task<ActionResult> Register(RegisterViewModel model)
                 return View();
             }
 
-            // Generate the token and send it
-            if (!await SignInManager.SendTwoFactorCodeAsync(model.SelectedProvider))
+            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+            if (user == null)
             {
                 return View("Error");
             }
+
+            // Generate the token and send it
+            var token = await _userManager.GenerateTwoFactorTokenAsync(user, model.SelectedProvider);
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                return View("Error");
+            }
+
+            var message = "Your security code is: " + token;
+            if (model.SelectedProvider == "Email")
+            {
+                await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Security Code", message);
+            }
+            else if (model.SelectedProvider == "Phone")
+            {
+                await _emailSender.SendEmailAsync(await _userManager.GetPhoneNumberAsync(user), "Security Code", message);
+            }
+
             return RedirectToAction("VerifyCode", new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
