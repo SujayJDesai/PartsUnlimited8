@@ -33,7 +33,6 @@ namespace PartsUnlimited.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            ViewBag.AuthenticationManager = AuthenticationManager;
 
             return View();
         }
