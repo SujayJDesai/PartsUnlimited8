@@ -480,7 +480,7 @@ public async Task<ActionResult> Register(RegisterViewModel model)
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError("", error.Description);
             }
         }
 
