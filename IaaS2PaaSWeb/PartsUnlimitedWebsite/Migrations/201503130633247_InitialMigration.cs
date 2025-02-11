@@ -73,27 +73,31 @@ namespace PartsUnlimitedWebsite.Migrations
                     })
                 .PrimaryKey("PK_AspNetUserRoles", t => new { t.UserId, t.RoleId });
             
-            migrationBuilder.CreateTable("AspNetUsers",
-                c => new
-                    {
-                        Id = c.String(),
-                        AccessFailedCount = c.Int(nullable: false),
-                        ConcurrencyStamp = c.String(),
-                        Email = c.String(),
-                        EmailConfirmed = c.Boolean(nullable: false),
-                        LockoutEnabled = c.Boolean(nullable: false),
-                        LockoutEnd = c.DateTimeOffset(),
-                        Name = c.String(),
-                        NormalizedEmail = c.String(),
-                        NormalizedUserName = c.String(),
-                        PasswordHash = c.String(),
-                        PhoneNumber = c.String(),
-                        PhoneNumberConfirmed = c.Boolean(nullable: false),
-                        SecurityStamp = c.String(),
-                        TwoFactorEnabled = c.Boolean(nullable: false),
-                        UserName = c.String()
-                    })
-                .PrimaryKey("PK_AspNetUsers", t => t.Id);
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    NormalizedEmail = table.Column<string>(nullable: true),
+                    NormalizedUserName = table.Column<string>(nullable: true),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    UserName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
             
             migrationBuilder.CreateTable("CartItem",
                 c => new
