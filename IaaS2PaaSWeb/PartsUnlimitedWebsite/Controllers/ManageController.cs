@@ -55,10 +55,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await UserManager.RemoveLoginAsync(user.Id, new UserLoginInfo(loginProvider, providerKey));
+                var result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     message = ManageMessageId.RemoveLoginSuccess;
                 }
             }
