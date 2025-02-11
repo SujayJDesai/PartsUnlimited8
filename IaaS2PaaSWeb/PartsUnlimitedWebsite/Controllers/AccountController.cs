@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace PartsUnlimited.Controllers
 {
@@ -16,15 +17,18 @@ namespace PartsUnlimited.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<AccountController> _logger;
+        private readonly IEmailSender _emailSender;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _emailSender = emailSender;
         }
 
         //
@@ -216,8 +220,8 @@ public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindByNameAsync(model.Email);
-                if (user == null || !(await UserManager.IsEmailConfirmedAsync(user.Id)))
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
                     return View("ForgotPasswordConfirmation");
@@ -225,17 +229,11 @@ public async Task<ActionResult> Register(RegisterViewModel model)
 
                 // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                 // Send an email with this link
-                string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-                var callbackUrl = Url.Action("ResetPassword", "Account", new { code = code }, protocol: Request.Url.Scheme);
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Scheme);
 
-                var email = new IdentityMessage
-                {
-                    Destination = model.Email,
-                    Body = string.Format("Please reset your password by clicking <a href=\"{0}\">here</a>", callbackUrl),
-                    Subject = "Reset Password"
-                };
-
-                await UserManager.SendEmailAsync(user.Id, "Reset Password", string.Format("Please reset your password by clicking <a href=\"{0}\">here</a>", callbackUrl));
+                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
+                    $"Please reset your password by clicking <a href='{callbackUrl}'>here</a>");
 
 #if !DEMO
                 return RedirectToAction("ForgotPasswordConfirmation");
@@ -246,7 +244,7 @@ public async Task<ActionResult> Register(RegisterViewModel model)
 #endif
             }
 
-            ModelState.AddModelError("", string.Format("We could not locate an account with email : {0}", model.Email));
+            ModelState.AddModelError("", $"We could not locate an account with email : {model.Email}");
 
             // If we got this far, something failed, redisplay form
             return View(model);
