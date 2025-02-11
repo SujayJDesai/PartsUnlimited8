@@ -1,20 +1,24 @@
-using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Metadata;
-using Microsoft.Data.Entity.Relational.Migrations.Infrastructure;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using PartsUnlimited.Models;
 using System;
 using PartsUnlimited.Data;
 
 namespace PartsUnlimitedWebsite.Migrations
 {
-    [ContextType(typeof(PartsUnlimitedContext))]
-    public class PartsUnlimitedContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(PartsUnlimitedContext))]
+    partial class PartsUnlimitedContextModelSnapshot : ModelSnapshot
     {
-        public override IModel Model
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
-            get
-            {
-                var builder = new BasicModelBuilder();
+#pragma warning disable 612, 618
+            modelBuilder
+                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
                 
                 builder.Entity("Microsoft.AspNet.Identity.IdentityRole", b =>
                     {
@@ -211,8 +215,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
                     });
                 
-                return builder.Model;
-            }
+#pragma warning restore 612, 618
         }
     }
 }
