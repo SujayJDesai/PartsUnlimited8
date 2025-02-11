@@ -153,16 +153,21 @@ namespace PartsUnlimitedWebsite.Migrations
                     table.PrimaryKey("PK_Order", x => x.OrderId);
                 });
             
-            migrationBuilder.CreateTable("OrderDetail",
-                c => new
-                    {
-                        OrderDetailId = c.Int(nullable: false, identity: true),
-                        Quantity = c.Int(nullable: false),
-                        UnitPrice = c.Decimal(nullable: false),
-                        OrderId = c.Int(nullable: false),
-                        ProductId = c.Int(nullable: false)
-                    })
-                .PrimaryKey("PK_OrderDetail", t => t.OrderDetailId);
+            migrationBuilder.CreateTable(
+                name: "OrderDetail",
+                columns: table => new
+                {
+                    OrderDetailId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<int>(nullable: false),
+                    UnitPrice = table.Column<decimal>(nullable: false),
+                    OrderId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderDetail", x => x.OrderDetailId);
+                });
             
             migrationBuilder.CreateTable(
                 name: "Product",
