@@ -1,38 +1,20 @@
-using Unity.Mvc4;
-using Microsoft.AspNetCore.Mvc;
-
-using Unity;
-
+using Microsoft.Extensions.DependencyInjection;
 
 namespace PartsUnlimited
 {
-  public static class Bootstrapper
-  {
-    public static IUnityContainer Initialise()
+    public static class Bootstrapper
     {
-      var container = BuildUnityContainer();
+        public static void ConfigureServices(IServiceCollection services)
+        {
+            // Register your services here
+            // e.g. services.AddTransient<ITestService, TestService>();
 
-      DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+            RegisterTypes(services);
+        }
 
-      return container;
+        public static void RegisterTypes(IServiceCollection services)
+        {
+            // Add your service registrations here
+        }
     }
-
-    private static IUnityContainer BuildUnityContainer()
-    {
-      var container = new UnityContainer();
-
-      // register all your components with the container here
-      // it is NOT necessary to register your controllers
-
-      // e.g. container.RegisterType<ITestService, TestService>();    
-      RegisterTypes(container);
-
-      return container;
-    }
-
-    public static void RegisterTypes(IUnityContainer container)
-    {
-    
-    }
-  }
 }
