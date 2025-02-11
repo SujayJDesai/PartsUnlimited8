@@ -130,23 +130,28 @@ namespace PartsUnlimitedWebsite.Migrations
                     table.PrimaryKey("PK_Category", x => x.CategoryId);
                 });
             
-            migrationBuilder.CreateTable("Order",
-                c => new
-                    {
-                        OrderId = c.Int(nullable: false, identity: true),
-                        Address = c.String(),
-                        City = c.String(),
-                        Country = c.String(),
-                        Email = c.String(),
-                        Name = c.String(),
-                        OrderDate = c.DateTime(nullable: false),
-                        Phone = c.String(),
-                        PostalCode = c.String(),
-                        State = c.String(),
-                        Total = c.Decimal(nullable: false),
-                        Username = c.String()
-                    })
-                .PrimaryKey("PK_Order", t => t.OrderId);
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Address = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    OrderDate = table.Column<DateTime>(nullable: false),
+                    Phone = table.Column<string>(nullable: true),
+                    PostalCode = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    Total = table.Column<decimal>(nullable: false),
+                    Username = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.OrderId);
+                });
             
             migrationBuilder.CreateTable("OrderDetail",
                 c => new
