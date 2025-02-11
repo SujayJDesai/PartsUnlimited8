@@ -60,16 +60,16 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Property<string>("ProviderDisplayName");
                         b.Property<string>("ProviderKey");
                         b.Property<string>("UserId");
-                        b.Key("LoginProvider", "ProviderKey");
-                        b.ForRelational().Table("AspNetUserLogins");
+                        b.HasKey("LoginProvider", "ProviderKey");
+                        b.ToTable("AspNetUserLogins");
                     });
-                
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                     {
                         b.Property<string>("RoleId");
                         b.Property<string>("UserId");
-                        b.Key("UserId", "RoleId");
-                        b.ForRelational().Table("AspNetUserRoles");
+                        b.HasKey("UserId", "RoleId");
+                        b.ToTable("AspNetUserRoles");
                     });
                 
                 modelBuilder.Entity("PartsUnlimited.Models.ApplicationUser", b =>
