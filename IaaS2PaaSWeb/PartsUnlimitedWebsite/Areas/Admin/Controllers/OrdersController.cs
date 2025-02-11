@@ -27,7 +27,7 @@ namespace PartsUnlimited.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Index", new { invalidOrderSearch = Request.QueryString["id"] });
+                return RedirectToAction("Index", new { invalidOrderSearch = Request.Query["id"].ToString() });
             }
 
             var order = await _ordersQuery.FindOrderAsync(id.Value);
