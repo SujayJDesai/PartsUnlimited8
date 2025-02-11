@@ -177,41 +177,59 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.HasKey("StoreId");
                     });
                 
-                builder.Entity("Microsoft.AspNet.Identity.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+                modelBuilder.Entity("Microsoft.AspNet.Identity.IdentityRoleClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
                     {
-                        b.ForeignKey("Microsoft.AspNet.Identity.IdentityRole", "RoleId");
+                        b.HasOne("Microsoft.AspNet.Identity.IdentityRole")
+                         .WithMany()
+                         .HasForeignKey("RoleId");
                     });
-                
-                builder.Entity("Microsoft.AspNet.Identity.IdentityUserClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+
+                modelBuilder.Entity("Microsoft.AspNet.Identity.IdentityUserClaim`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.ApplicationUser", "UserId");
+                        b.HasOne("PartsUnlimited.Models.ApplicationUser")
+                         .WithMany()
+                         .HasForeignKey("UserId");
                     });
-                
-                builder.Entity("Microsoft.AspNet.Identity.IdentityUserLogin`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
+
+                modelBuilder.Entity("Microsoft.AspNet.Identity.IdentityUserLogin`1[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.ApplicationUser", "UserId");
+                        b.HasOne("PartsUnlimited.Models.ApplicationUser")
+                         .WithMany()
+                         .HasForeignKey("UserId");
                     });
                 
                 modelBuilder.Entity("PartsUnlimited.Models.CartItem", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
+                        b.HasOne("PartsUnlimited.Models.Product")
+                         .WithMany()
+                         .HasForeignKey("ProductId");
                     });
-                
+
                 modelBuilder.Entity("PartsUnlimited.Models.OrderDetail", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.Order", "OrderId");
-                        b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
+                        b.HasOne("PartsUnlimited.Models.Order")
+                         .WithMany()
+                         .HasForeignKey("OrderId");
+                        b.HasOne("PartsUnlimited.Models.Product")
+                         .WithMany()
+                         .HasForeignKey("ProductId");
                     });
-                
+
                 modelBuilder.Entity("PartsUnlimited.Models.Product", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.Category", "CategoryId");
+                        b.HasOne("PartsUnlimited.Models.Category")
+                         .WithMany()
+                         .HasForeignKey("CategoryId");
                     });
-                
+
                 modelBuilder.Entity("PartsUnlimited.Models.Raincheck", b =>
                     {
-                        b.ForeignKey("PartsUnlimited.Models.Store", "StoreId");
-                        b.ForeignKey("PartsUnlimited.Models.Product", "ProductId");
+                        b.HasOne("PartsUnlimited.Models.Store")
+                         .WithMany()
+                         .HasForeignKey("StoreId");
+                        b.HasOne("PartsUnlimited.Models.Product")
+                         .WithMany()
+                         .HasForeignKey("ProductId");
                     });
                 
 #pragma warning restore 612, 618
