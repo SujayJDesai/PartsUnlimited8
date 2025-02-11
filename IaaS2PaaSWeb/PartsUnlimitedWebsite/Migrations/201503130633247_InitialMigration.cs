@@ -1,13 +1,11 @@
-using Microsoft.Data.Entity.Relational.Migrations;
-using Microsoft.Data.Entity.Relational.Migrations.Builders;
-using Microsoft.Data.Entity.Relational.Migrations.MigrationsModel;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
 namespace PartsUnlimitedWebsite.Migrations
 {
     public partial class InitialMigration : Migration
     {
-        public override void Up(MigrationBuilder migrationBuilder)
+        protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable("AspNetRoles",
                 c => new
@@ -234,7 +232,7 @@ namespace PartsUnlimitedWebsite.Migrations
                 cascadeDelete: false);
         }
         
-        public override void Down(MigrationBuilder migrationBuilder)
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey("AspNetRoleClaims", "FK_AspNetRoleClaims_AspNetRoles_RoleId");
             
