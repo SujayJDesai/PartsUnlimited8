@@ -79,7 +79,7 @@ namespace PartsUnlimitedWebsite.Migrations
                         b.Property<string>("Email");
                         b.Property<bool>("EmailConfirmed");
                         b.Property<string>("Id")
-                            .GenerateValueOnAdd();
+                            .ValueGeneratedOnAdd();
                         b.Property<bool>("LockoutEnabled");
                         b.Property<DateTimeOffset?>("LockoutEnd");
                         b.Property<string>("Name");
