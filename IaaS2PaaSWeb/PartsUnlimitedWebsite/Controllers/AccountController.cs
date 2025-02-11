@@ -12,20 +12,13 @@ namespace PartsUnlimited.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private SignInManager<ApplicationUser, string> SignInManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Get<SignInManager<ApplicationUser, string>>();
-            }
-        }
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        private UserManager<ApplicationUser> UserManager
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<UserManager<ApplicationUser>>();
-            }
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         //
@@ -475,13 +468,7 @@ namespace PartsUnlimited.Controllers
             }
         }
 
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
+        private IAuthenticationManager AuthenticationManager => HttpContext.RequestServices.GetRequiredService<IAuthenticationManager>();
 
         internal class ChallengeResult : HttpUnauthorizedResult
         {
