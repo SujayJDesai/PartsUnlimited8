@@ -4,11 +4,10 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using PartsUnlimited.Models;
 using System;
-using PartsUnlimited.Data;
 
 namespace PartsUnlimitedWebsite.Migrations
 {
-    [DbContext(typeof(PartsUnlimitedContext))]
+    [DbContext(typeof(PartsUnlimited.Models.PartsUnlimitedContext))]
     [Migration("201503130633247_InitialMigration")]
     partial class InitialMigration
     {
