@@ -41,7 +41,7 @@ namespace PartsUnlimited.Controllers
             if (id == null)
             {
                 _telemetry.TrackTrace("Order/Server/NullId");
-                return RedirectToAction("Index", new { invalidOrderSearch = Request.QueryString["id"] });
+                return RedirectToAction("Index", new { invalidOrderSearch = Request.Query["id"].ToString() });
             }
 
             var order = await _ordersQuery.FindOrderAsync(id.Value);
