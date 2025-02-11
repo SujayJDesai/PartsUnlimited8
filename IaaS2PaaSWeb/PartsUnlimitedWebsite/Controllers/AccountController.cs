@@ -4,9 +4,8 @@ using System.Threading.Tasks;
 using System.Web;
 using PartsUnlimited.Models;
 using Microsoft.AspNetCore.Mvc;
-
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace PartsUnlimited.Controllers
 {
