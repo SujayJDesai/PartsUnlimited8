@@ -99,15 +99,21 @@ namespace PartsUnlimitedWebsite.Migrations
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
             
-            migrationBuilder.CreateTable("CartItem",
-                c => new
-                    {
-                        CartItemId = c.Int(nullable: false, identity: true),
-                        CartId = c.String(),
-                        Count = c.Int(nullable: false),
-                        DateCreated = c.DateTime(nullable: false),
-                        ProductId = c.Int(nullable: false)
-                    })
+            migrationBuilder.CreateTable(
+                name: "CartItem",
+                columns: table => new
+                {
+                    CartItemId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CartId = table.Column<string>(nullable: true),
+                    Count = table.Column<int>(nullable: false),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItem", x => x.CartItemId);
+                })
                 .PrimaryKey("PK_CartItem", t => t.CartItemId);
             
             migrationBuilder.CreateTable("Category",
@@ -148,18 +154,23 @@ namespace PartsUnlimitedWebsite.Migrations
                     })
                 .PrimaryKey("PK_OrderDetail", t => t.OrderDetailId);
             
-            migrationBuilder.CreateTable("Product",
-                c => new
-                    {
-                        ProductId = c.Int(nullable: false, identity: true),
-                        Created = c.DateTime(nullable: false),
-                        Price = c.Decimal(nullable: false),
-                        ProductArtUrl = c.String(),
-                        SalePrice = c.Decimal(nullable: false),
-                        Title = c.String(),
-                        CategoryId = c.Int(nullable: false)
-                    })
-                .PrimaryKey("PK_Product", t => t.ProductId);
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    ProductArtUrl = table.Column<string>(nullable: true),
+                    SalePrice = table.Column<decimal>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                });
             
             migrationBuilder.CreateTable("Raincheck",
                 c => new
