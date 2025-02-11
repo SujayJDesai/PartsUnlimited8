@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using PartsUnlimited.Models;
 using System;
-using PartsUnlimited.Data;
 
 namespace PartsUnlimitedWebsite.Migrations
 {
