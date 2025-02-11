@@ -97,9 +97,9 @@ namespace PartsUnlimited.Controllers
 
         //
         // AJAX: /ShoppingCart/RemoveFromCart/5
-        [System.Web.Mvc.HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> RemoveFromCart([FromUri] int id)
+        public async Task<ActionResult> RemoveFromCart([FromRoute] int id)
         {
 
             // Start timer for save process telemetry
