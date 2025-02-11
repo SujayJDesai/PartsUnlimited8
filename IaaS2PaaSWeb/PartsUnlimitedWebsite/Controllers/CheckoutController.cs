@@ -62,7 +62,7 @@ namespace PartsUnlimited.Controllers
                 }
                 else
                 {
-                    order.Username = User.Identity.GetUserName();
+                    order.Username = await _userManager.GetUserNameAsync(User);
                     order.OrderDate = DateTime.Now;
 
                     //Add the Order
