@@ -68,8 +68,8 @@ namespace PartsUnlimitedWebsite.Migrations
             migrationBuilder.CreateTable("AspNetUserRoles",
                 c => new
                     {
-                        UserId = c.String(),
-                        RoleId = c.String()
+                        UserId = c.Column<string>(nullable: true),
+                        RoleId = c.Column<string>(nullable: true)
                     })
                 .PrimaryKey("PK_AspNetUserRoles", t => new { t.UserId, t.RoleId });
             
