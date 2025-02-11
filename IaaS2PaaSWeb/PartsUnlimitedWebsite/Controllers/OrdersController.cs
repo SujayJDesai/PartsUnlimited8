@@ -18,18 +18,20 @@ namespace PartsUnlimited.Controllers
         private readonly IOrdersQuery _ordersQuery;
         private readonly ITelemetryProvider _telemetry;
 		private readonly IShippingTaxCalculator _shippingTaxCalc;
+        private readonly UserManager<ApplicationUser> _userManager;
 
 		public OrdersController(IOrdersQuery ordersQuery, ITelemetryProvider telemetryProvider,
-			IShippingTaxCalculator shippingTaxCalc)
+			IShippingTaxCalculator shippingTaxCalc, UserManager<ApplicationUser> userManager)
         {
             _ordersQuery = ordersQuery;
             _telemetry = telemetryProvider;
 			_shippingTaxCalc = shippingTaxCalc;
+            _userManager = userManager;
         }
 
         public async Task<ActionResult> Index(DateTime? start, DateTime? end, string invalidOrderSearch)
         {
-            var username = User.Identity.GetUserName();
+            var username = await _userManager.GetUserNameAsync(User);
 
             return View(await _ordersQuery.IndexHelperAsync(username, start, end, invalidOrderSearch, false));
         }
@@ -43,7 +45,7 @@ namespace PartsUnlimited.Controllers
             }
 
             var order = await _ordersQuery.FindOrderAsync(id.Value);
-            var username = User.Identity.GetUserName();
+            var username = await _userManager.GetUserNameAsync(User);
 
             // If the username isn't the same as the logged in user, return as if the order does not exist
             if (order == null || !String.Equals(order.Username, username, StringComparison.Ordinal))
