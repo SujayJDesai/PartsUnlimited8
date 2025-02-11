@@ -10,7 +10,12 @@ namespace PartsUnlimited.Utils
 {
     public class SignalRDependencyResolver : DefaultDependencyResolver
     {
-        private readonly IUnityContainer inner = Global.UnityContainer.CreateChildContainer();
+        private readonly IUnityContainer inner;
+
+        public SignalRDependencyResolver(IUnityContainer container)
+        {
+            inner = container.CreateChildContainer();
+        }
 
         public override object GetService(Type serviceType)
         {
