@@ -1,9 +1,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
-
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.AspNetCore.Authentication;
 
 namespace PartsUnlimited.Models
 {
@@ -19,7 +18,7 @@ namespace PartsUnlimited.Models
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }
-        public IList<AuthenticationDescription> OtherLogins { get; set; }
+        public IList<AuthenticationScheme> OtherLogins { get; set; }
     }
 
     public class FactorViewModel
