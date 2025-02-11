@@ -15,10 +15,12 @@ namespace PartsUnlimited.Controllers
     public class CheckoutController : Controller
     {
         private readonly IPartsUnlimitedContext db;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CheckoutController(IPartsUnlimitedContext context)
+        public CheckoutController(IPartsUnlimitedContext context, UserManager<ApplicationUser> userManager)
         {
             db = context;
+            _userManager = userManager;
         }
 
         const string PromoCode = "FREE";
@@ -28,7 +30,7 @@ namespace PartsUnlimited.Controllers
 
         public async Task<ActionResult> AddressAndPayment()
         {
-            var id = User.Identity.GetUserId();
+            var id = _userManager.GetUserId(User);
             var user = await db.Users.FirstOrDefaultAsync(o => o.Id == id);
 
             var order = new Order
