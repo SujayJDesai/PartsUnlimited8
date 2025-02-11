@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using PartsUnlimited.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
@@ -11,20 +10,13 @@ namespace PartsUnlimited.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        private SignInManager<ApplicationUser, string> SignInManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Get<SignInManager<ApplicationUser, string>>();
-            }
-        }
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        private UserManager<ApplicationUser> UserManager
+        public ManageController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<UserManager<ApplicationUser>>();
-            }
+            _signInManager = signInManager;
+            _userManager = userManager;
         }
 
         //
