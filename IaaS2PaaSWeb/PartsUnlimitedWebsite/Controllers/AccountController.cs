@@ -1,31 +1,30 @@
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using PartsUnlimited.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication;
 
 namespace PartsUnlimited.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private SignInManager<ApplicationUser, string> SignInManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Get<SignInManager<ApplicationUser, string>>();
-            }
-        }
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILogger<AccountController> _logger;
 
-        private UserManager<ApplicationUser> UserManager
+        public AccountController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            ILogger<AccountController> logger)
         {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<UserManager<ApplicationUser>>();
-            }
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _logger = logger;
         }
 
         //
@@ -44,35 +43,33 @@ namespace PartsUnlimited.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<IActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-
-            if (result == SignInStatus.Success)
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+            if (result.Succeeded)
             {
+                _logger.LogInformation("User logged in.");
                 return RedirectToLocal(returnUrl);
             }
-
-            if (result == SignInStatus.LockedOut)
+            if (result.RequiresTwoFactor)
             {
+                return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            }
+            if (result.IsLockedOut)
+            {
+                _logger.LogWarning("User account locked out.");
                 return View("Lockout");
             }
-
-            if (result == SignInStatus.RequiresVerification)
+            else
             {
-                return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                return View(model);
             }
-
-            ViewBag.AuthenticationManager = AuthenticationManager;
-            ModelState.AddModelError("", "Invalid login attempt.");
-            return View(model);
         }
 
         //
@@ -304,11 +301,12 @@ namespace PartsUnlimited.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult ExternalLogin(string provider, string returnUrl)
+        public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
-            // Request a redirect to the external login provider
-            var redirectUrl = Url.Action("ExternalLoginCallback", "Account", new { ReturnUrl = returnUrl });
-            return new ChallengeResult(provider, redirectUrl);
+            // Request a redirect to the external login provider.
+            var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { returnUrl });
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+            return Challenge(properties, provider);
         }
 
         //
@@ -349,40 +347,39 @@ namespace PartsUnlimited.Controllers
         //
         // GET: /Account/ExternalLoginCallback
         [AllowAnonymous]
-        public async Task<ActionResult> ExternalLoginCallback(string returnUrl)
+        public async Task<IActionResult> ExternalLoginCallback(string returnUrl = null, string remoteError = null)
         {
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
+            if (remoteError != null)
             {
-                return RedirectToAction("Login");
+                ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+                return View(nameof(Login));
+            }
+            var info = await _signInManager.GetExternalLoginInfoAsync();
+            if (info == null)
+            {
+                return RedirectToAction(nameof(Login));
             }
 
-            // Sign in the user with this external login provider if the user already has a login
-            var result = await SignInManager.ExternalSignInAsync(loginInfo, isPersistent: false);
-
-            if (result == SignInStatus.Success)
+            // Sign in the user with this external login provider if the user already has a login.
+            var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
+            if (result.Succeeded)
             {
+                _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
                 return RedirectToLocal(returnUrl);
             }
-
-            if (result == SignInStatus.LockedOut)
+            if (result.IsLockedOut)
             {
                 return View("Lockout");
             }
-
-            if (result == SignInStatus.RequiresVerification)
+            else
             {
-                return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = false });
+                // If the user does not have an account, then ask the user to create an account.
+                ViewData["ReturnUrl"] = returnUrl;
+                ViewData["LoginProvider"] = info.LoginProvider;
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                var name = info.Principal.FindFirstValue(ClaimTypes.Name);
+                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email, Name = name });
             }
-
-            // If the user does not have an account, then prompt the user to create an account
-            ViewBag.ReturnUrl = returnUrl;
-            ViewBag.LoginProvider = loginInfo.Login.LoginProvider;
-            // REVIEW: handle case where email not in claims?
-            var email = loginInfo.ExternalIdentity.FindFirstValue(ClaimTypes.Email);
-            var name = loginInfo.ExternalIdentity.FindFirstValue(ClaimTypes.Name);
-
-            return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email, Name = name });
         }
 
         //
@@ -438,10 +435,11 @@ namespace PartsUnlimited.Controllers
         // POST: /Account/LogOff
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
+        public async Task<IActionResult> LogOff()
         {
-            AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
+            await _signInManager.SignOutAsync();
+            _logger.LogInformation("User logged out.");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         //
@@ -475,44 +473,9 @@ namespace PartsUnlimited.Controllers
             }
         }
 
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
+        // Remove this property as it's no longer needed
 
-        internal class ChallengeResult : HttpUnauthorizedResult
-        {
-            public ChallengeResult(string provider, string redirectUri)
-                : this(provider, redirectUri, null)
-            {
-            }
-
-            public ChallengeResult(string provider, string redirectUri, string userId)
-            {
-                LoginProvider = provider;
-                RedirectUri = redirectUri;
-                UserId = userId;
-            }
-
-            public string LoginProvider { get; set; }
-            public string RedirectUri { get; set; }
-            public string UserId { get; set; }
-
-            public override void ExecuteResult(ControllerContext context)
-            {
-                var properties = new AuthenticationProperties { RedirectUri = RedirectUri };
-                if (UserId != null)
-                {
-                    properties.Dictionary[XsrfKey] = UserId;
-                }
-
-                var c = context.HttpContext.GetOwinContext();
-                c.Authentication.Challenge(properties, LoginProvider);
-            }
-        }
+        // Remove this entire ChallengeResult class as it's no longer needed
         #endregion
     }
 }
