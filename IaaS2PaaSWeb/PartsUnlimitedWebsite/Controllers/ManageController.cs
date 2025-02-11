@@ -4,6 +4,7 @@ using PartsUnlimited.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace PartsUnlimited.Controllers
 {
@@ -12,11 +13,16 @@ namespace PartsUnlimited.Controllers
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILogger<ManageController> _logger;
 
-        public ManageController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        public ManageController(
+            SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            ILogger<ManageController> logger)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _logger = logger;
         }
 
         //
@@ -84,9 +90,11 @@ namespace PartsUnlimited.Controllers
             }
             // Generate the token and send it
             var user = await GetCurrentUserAsync();
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(user.Id, model.Number);
+            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.Number);
 
-            await UserManager.SendSmsAsync(user.Id, string.Format("Your security code is: {0}", code));
+            // Note: In ASP.NET Core, SMS sending is not built-in. You would need to implement this yourself or use a third-party service.
+            // For now, we'll just log the code instead of sending it.
+            _logger.LogInformation($"SMS code for user {user.Id}: {code}");
 
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
@@ -100,8 +108,8 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await UserManager.SetTwoFactorEnabledAsync(user.Id, true);
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await _userManager.SetTwoFactorEnabledAsync(user, true);
+                await _signInManager.SignInAsync(user, isPersistent: false);
             }
             return RedirectToAction("Index", "Manage");
         }
@@ -115,8 +123,8 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await UserManager.SetTwoFactorEnabledAsync(user.Id, false);
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await _userManager.SetTwoFactorEnabledAsync(user, false);
+                await _signInManager.SignInAsync(user, isPersistent: false);
             }
             return RedirectToAction("Index", "Manage");
         }
@@ -128,7 +136,8 @@ namespace PartsUnlimited.Controllers
             // This code allows you exercise the flow without actually sending codes
             // For production use please register a SMS provider in IdentityConfig and generate a code here.
 #if DEMO
-            ViewBag.Code = await UserManager.GenerateChangePhoneNumberTokenAsync((await GetCurrentUserAsync()).Id, phoneNumber);
+            var user = await GetCurrentUserAsync();
+            ViewBag.Code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
 #endif
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
@@ -146,10 +155,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await UserManager.ChangePhoneNumberAsync(user.Id, model.PhoneNumber, model.Code);
+                var result = await _userManager.ChangePhoneNumberAsync(user, model.PhoneNumber, model.Code);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
                 }
             }
@@ -165,10 +174,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await UserManager.SetPhoneNumberAsync(user.Id, null);
+                var result = await _userManager.SetPhoneNumberAsync(user, null);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
                 }
             }
@@ -195,10 +204,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await UserManager.ChangePasswordAsync(user.Id, model.OldPassword, model.NewPassword);
+                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
                 AddErrors(result);
@@ -228,10 +237,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await UserManager.AddPasswordAsync(user.Id, model.NewPassword);
+                var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.SetPasswordSuccess });
                 }
                 AddErrors(result);
@@ -249,7 +258,7 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: true);
+                await _signInManager.SignInAsync(user, isPersistent: true);
             }
             return RedirectToAction("Index", "Manage");
         }
@@ -263,7 +272,8 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await _signInManager.SignOutAsync();
+                await _signInManager.SignInAsync(user, isPersistent: false);
             }
             return RedirectToAction("Index", "Manage");
         }
