@@ -187,25 +187,35 @@ namespace PartsUnlimitedWebsite.Migrations
                     table.PrimaryKey("PK_Product", x => x.ProductId);
                 });
             
-            migrationBuilder.CreateTable("Raincheck",
-                c => new
-                    {
-                        RaincheckId = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Quantity = c.Int(nullable: false),
-                        SalePrice = c.Double(nullable: false),
-                        StoreId = c.Int(nullable: false),
-                        ProductId = c.Int(nullable: false)
-                    })
-                .PrimaryKey("PK_Raincheck", t => t.RaincheckId);
+            migrationBuilder.CreateTable(
+                name: "Raincheck",
+                columns: table => new
+                {
+                    RaincheckId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false),
+                    SalePrice = table.Column<double>(nullable: false),
+                    StoreId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Raincheck", x => x.RaincheckId);
+                });
             
-            migrationBuilder.CreateTable("Store",
-                c => new
-                    {
-                        StoreId = c.Int(nullable: false, identity: true),
-                        Name = c.String()
-                    })
-                .PrimaryKey("PK_Store", t => t.StoreId);
+            migrationBuilder.CreateTable(
+                name: "Store",
+                columns: table => new
+                {
+                    StoreId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Store", x => x.StoreId);
+                });
             
             migrationBuilder.AddForeignKey(
                 "AspNetRoleClaims",
