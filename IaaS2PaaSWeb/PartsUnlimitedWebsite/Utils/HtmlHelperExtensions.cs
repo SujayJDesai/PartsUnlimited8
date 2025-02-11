@@ -23,7 +23,7 @@ namespace PartsUnlimited.Utils
                 img.MergeAttribute("alt", alt);
             }
 
-            return new HtmlString(img.RenderSelfClosingTag());
+            return new HtmlString(img.ToString(TagRenderMode.SelfClosing));
         }
 
         private static string GetCdnSource(string src)
