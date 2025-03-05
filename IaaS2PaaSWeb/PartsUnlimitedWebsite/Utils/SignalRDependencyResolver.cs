@@ -2,13 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.SignalR;
-using Microsoft.Practices.Unity;
+using Unity;
+using Unity.Lifetime;
+
 
 namespace PartsUnlimited.Utils
 {
     public class SignalRDependencyResolver : DefaultDependencyResolver
     {
-        private readonly IUnityContainer inner = Global.UnityContainer.CreateChildContainer();
+        private readonly IUnityContainer inner;
+
+        public SignalRDependencyResolver(IUnityContainer container)
+        {
+            inner = container.CreateChildContainer();
+        }
 
         public override object GetService(Type serviceType)
         {

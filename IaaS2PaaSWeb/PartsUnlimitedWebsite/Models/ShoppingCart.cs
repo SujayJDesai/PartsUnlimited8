@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
+using Microsoft.AspNetCore.Http;
+
 
 namespace PartsUnlimited.Models
 {
@@ -16,7 +17,7 @@ namespace PartsUnlimited.Models
             _db = db;
         }
 
-        public static ShoppingCart GetCart(IPartsUnlimitedContext db, HttpContextBase context)
+        public static ShoppingCart GetCart(IPartsUnlimitedContext db, HttpContext context)
         {
             var cart = new ShoppingCart(db);
             cart.ShoppingCartId = cart.GetCartId(context);
@@ -160,18 +161,18 @@ namespace PartsUnlimited.Models
             return order.OrderId;
         }
 
-        // We're using HttpContextBase to allow access to cookies.
-        public string GetCartId(HttpContextBase context)
+// We're using HttpContext to allow access to session.
+        public string GetCartId(HttpContext context)
         {
-            string cartId = context.Session["CartID"] as string;
+            string cartId = context.Session.GetString("CartID");
 
             if (cartId == null)
             {
-                //A GUID to hold the cartId. 
+                //A GUID to hold the cartId.
                 cartId = Guid.NewGuid().ToString();
 
-                // Send cart Id as a cookie to the client.
-                context.Session["CartID"] = cartId;
+                // Store cart Id in the session.
+                context.Session.SetString("CartID", cartId);
             }
 
             return cartId;

@@ -1,16 +1,18 @@
-﻿using System;
-using System.Web;
-using System.Web.Mvc;
+using System;
+using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Html;
 
 namespace PartsUnlimited.Utils
 {
     public static class HtmlHelperExtensions
     {
-        public static HtmlString Image(this HtmlHelper helper, string src, string alt = null)
+        public static IHtmlContent Image(this IHtmlHelper helper, string src, string alt = null)
         {
             if (string.IsNullOrWhiteSpace(src))
             {
-                throw new ArgumentOutOfRangeException("src", src, "Must not be null or whitespace");
+                throw new ArgumentOutOfRangeException(nameof(src), src, "Must not be null or whitespace");
             }
 
             var img = new TagBuilder("img");
@@ -22,7 +24,11 @@ namespace PartsUnlimited.Utils
                 img.MergeAttribute("alt", alt);
             }
 
-            return new HtmlString(img.ToString(TagRenderMode.SelfClosing));
+using (var writer = new StringWriter())
+            {
+                img.WriteTo(writer, System.Text.Encodings.Web.HtmlEncoder.Default);
+                return new HtmlString(writer.ToString());
+            }
         }
 
         private static string GetCdnSource(string src)

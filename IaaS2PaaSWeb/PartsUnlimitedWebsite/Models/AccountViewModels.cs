@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Web.Mvc;
-using Microsoft.Owin.Security;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
 
 namespace PartsUnlimited.Models
 {
@@ -19,7 +21,6 @@ namespace PartsUnlimited.Models
     public class ExternalLoginListViewModel
     {
         public string ReturnUrl { get; set; }
-        public IAuthenticationManager AuthenticationManager { get; set; }
     }
 
     public class SendCodeViewModel

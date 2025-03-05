@@ -1,26 +1,35 @@
-//TODO Application Insights - Uncomment
-//using Microsoft.ApplicationInsights.Extensibility;
-using Microsoft.Owin;
-using Owin;
 using PartsUnlimited;
-using System.Web.Configuration;
-
-[assembly: OwinStartup(typeof(Startup))]
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 //comment
 namespace PartsUnlimited
 {
 	// bellevue comment!!
 	// second commit
-    public partial class Startup
+    public class Startup
     {
-        public void Configuration(IAppBuilder app)
+        public IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration)
         {
-            ConfigureAuth(app);
+            Configuration = configuration;
+        }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // Configure services here
+        }
+
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            // Configure the HTTP request pipeline here
 
             //TODO Application Insights - Uncomment
-            //TelemetryConfiguration.Active.InstrumentationKey = WebConfigurationManager.AppSettings["Keys:ApplicationInsights:InstrumentationKey"];
-
+            //var instrumentationKey = Configuration["ApplicationInsights:InstrumentationKey"];
+            //Microsoft.ApplicationInsights.Extensibility.TelemetryConfiguration.Active.InstrumentationKey = instrumentationKey;
         }
     }
 }

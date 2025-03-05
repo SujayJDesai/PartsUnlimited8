@@ -1,10 +1,11 @@
-﻿using PartsUnlimited.Utils;
+using PartsUnlimited.Utils;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using PartsUnlimited.Models;
 using PartsUnlimited.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace PartsUnlimited.Areas.Admin.Controllers
 {
@@ -26,7 +27,7 @@ namespace PartsUnlimited.Areas.Admin.Controllers
         {
             if (id == null)
             {
-                return RedirectToAction("Index", new { invalidOrderSearch = Request.QueryString["id"] });
+                return RedirectToAction("Index", new { invalidOrderSearch = Request.Query["id"].ToString() });
             }
 
             var order = await _ordersQuery.FindOrderAsync(id.Value);

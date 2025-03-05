@@ -1,11 +1,15 @@
-﻿using System;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using PartsUnlimited.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
+
 
 namespace PartsUnlimited.Controllers
 {
@@ -13,10 +17,12 @@ namespace PartsUnlimited.Controllers
     public class CheckoutController : Controller
     {
         private readonly IPartsUnlimitedContext db;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public CheckoutController(IPartsUnlimitedContext context)
+        public CheckoutController(IPartsUnlimitedContext context, UserManager<ApplicationUser> userManager)
         {
             db = context;
+            _userManager = userManager;
         }
 
         const string PromoCode = "FREE";
@@ -26,7 +32,7 @@ namespace PartsUnlimited.Controllers
 
         public async Task<ActionResult> AddressAndPayment()
         {
-            var id = User.Identity.GetUserId();
+            var id = _userManager.GetUserId(User);
             var user = await db.Users.FirstOrDefaultAsync(o => o.Id == id);
 
             var order = new Order
@@ -50,14 +56,14 @@ namespace PartsUnlimited.Controllers
 
             try
             {
-                if (string.Equals(formCollection.GetValues("PromoCode").FirstOrDefault(), PromoCode,
+                if (string.Equals(formCollection["PromoCode"].FirstOrDefault(), PromoCode,
                     StringComparison.OrdinalIgnoreCase) == false)
                 {
                     return View(order);
                 }
                 else
                 {
-                    order.Username = User.Identity.GetUserName();
+                    order.Username = await _userManager.GetUserNameAsync(await _userManager.GetUserAsync(User));
                     order.OrderDate = DateTime.Now;
 
                     //Add the Order
@@ -83,10 +89,10 @@ namespace PartsUnlimited.Controllers
         //
         // GET: /Checkout/Complete
 
-        public ActionResult Complete(int id)
+        public async Task<ActionResult> Complete(int id)
         {
             // Validate customer owns this order
-            var username = User.Identity.GetUserName();
+            var username = await _userManager.GetUserNameAsync(await _userManager.GetUserAsync(User));
 
             Order order = db.Orders.First(
                 o => o.OrderId == id &&

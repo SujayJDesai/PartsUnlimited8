@@ -1,31 +1,28 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
 using PartsUnlimited.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace PartsUnlimited.Controllers
 {
     [Authorize]
     public class ManageController : Controller
     {
-        private SignInManager<ApplicationUser, string> SignInManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Get<SignInManager<ApplicationUser, string>>();
-            }
-        }
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILogger<ManageController> _logger;
 
-        private UserManager<ApplicationUser> UserManager
+        public ManageController(
+            SignInManager<ApplicationUser> signInManager,
+            UserManager<ApplicationUser> userManager,
+            ILogger<ManageController> logger)
         {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<UserManager<ApplicationUser>>();
-            }
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _logger = logger;
         }
 
         //
@@ -44,11 +41,11 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             var model = new IndexViewModel
             {
-                HasPassword = await UserManager.HasPasswordAsync(user.Id),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(user.Id),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(user.Id),
-                Logins = await UserManager.GetLoginsAsync(user.Id),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(user.Id)
+                HasPassword = await _userManager.HasPasswordAsync(user),
+                PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
+                TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
+                Logins = await _userManager.GetLoginsAsync(user),
+                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user)
             };
 
             return View(model);
@@ -64,10 +61,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await UserManager.RemoveLoginAsync(user.Id, new UserLoginInfo(loginProvider, providerKey));
+                var result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     message = ManageMessageId.RemoveLoginSuccess;
                 }
             }
@@ -93,9 +90,11 @@ namespace PartsUnlimited.Controllers
             }
             // Generate the token and send it
             var user = await GetCurrentUserAsync();
-            var code = await UserManager.GenerateChangePhoneNumberTokenAsync(user.Id, model.Number);
+            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.Number);
 
-            await UserManager.SendSmsAsync(user.Id, string.Format("Your security code is: {0}", code));
+            // Note: In ASP.NET Core, SMS sending is not built-in. You would need to implement this yourself or use a third-party service.
+            // For now, we'll just log the code instead of sending it.
+            _logger.LogInformation($"SMS code for user {user.Id}: {code}");
 
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
@@ -109,8 +108,8 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await UserManager.SetTwoFactorEnabledAsync(user.Id, true);
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await _userManager.SetTwoFactorEnabledAsync(user, true);
+                await _signInManager.SignInAsync(user, isPersistent: false);
             }
             return RedirectToAction("Index", "Manage");
         }
@@ -124,8 +123,8 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await UserManager.SetTwoFactorEnabledAsync(user.Id, false);
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await _userManager.SetTwoFactorEnabledAsync(user, false);
+                await _signInManager.SignInAsync(user, isPersistent: false);
             }
             return RedirectToAction("Index", "Manage");
         }
@@ -137,7 +136,8 @@ namespace PartsUnlimited.Controllers
             // This code allows you exercise the flow without actually sending codes
             // For production use please register a SMS provider in IdentityConfig and generate a code here.
 #if DEMO
-            ViewBag.Code = await UserManager.GenerateChangePhoneNumberTokenAsync((await GetCurrentUserAsync()).Id, phoneNumber);
+            var user = await GetCurrentUserAsync();
+            ViewBag.Code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
 #endif
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
@@ -155,10 +155,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await UserManager.ChangePhoneNumberAsync(user.Id, model.PhoneNumber, model.Code);
+                var result = await _userManager.ChangePhoneNumberAsync(user, model.PhoneNumber, model.Code);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
                 }
             }
@@ -174,10 +174,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await UserManager.SetPhoneNumberAsync(user.Id, null);
+                var result = await _userManager.SetPhoneNumberAsync(user, null);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
                 }
             }
@@ -204,10 +204,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await UserManager.ChangePasswordAsync(user.Id, model.OldPassword, model.NewPassword);
+                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
                 AddErrors(result);
@@ -237,10 +237,10 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                var result = await UserManager.AddPasswordAsync(user.Id, model.NewPassword);
+                var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", new { Message = ManageMessageId.SetPasswordSuccess });
                 }
                 AddErrors(result);
@@ -258,7 +258,7 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: true);
+                await _signInManager.SignInAsync(user, isPersistent: true);
             }
             return RedirectToAction("Index", "Manage");
         }
@@ -272,7 +272,8 @@ namespace PartsUnlimited.Controllers
             var user = await GetCurrentUserAsync();
             if (user != null)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                await _signInManager.SignOutAsync();
+                await _signInManager.SignInAsync(user, isPersistent: false);
             }
             return RedirectToAction("Index", "Manage");
         }
@@ -291,8 +292,10 @@ namespace PartsUnlimited.Controllers
             {
                 return View("Error");
             }
-            var userLogins = await UserManager.GetLoginsAsync(user.Id);
-            var otherLogins = AuthenticationManager.GetExternalAuthenticationTypes().Where(auth => userLogins.All(ul => auth.AuthenticationType != ul.LoginProvider)).ToList();
+            var userLogins = await _userManager.GetLoginsAsync(user);
+            var otherLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync())
+                .Where(auth => userLogins.All(ul => auth.Name != ul.LoginProvider))
+                .ToList();
             ViewBag.ShowRemoveButton = user.PasswordHash != null || userLogins.Count > 1;
             return View(new ManageLoginsViewModel
             {
@@ -305,10 +308,12 @@ namespace PartsUnlimited.Controllers
         // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LinkLogin(string provider)
+        public IActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
-            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+            var redirectUrl = Url.Action("LinkLoginCallback", "Manage");
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
+            return new ChallengeResult(provider, properties);
         }
 
         //
@@ -321,12 +326,12 @@ namespace PartsUnlimited.Controllers
                 return View("Error");
             }
 
-            var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync();
-            if (loginInfo == null)
+            var info = await _signInManager.GetExternalLoginInfoAsync(await _userManager.GetUserIdAsync(user));
+            if (info == null)
             {
                 return RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
             }
-            var result = await UserManager.AddLoginAsync(user.Id, loginInfo.Login);
+            var result = await _userManager.AddLoginAsync(user, info);
             var message = result.Succeeded ? ManageMessageId.AddLoginSuccess : ManageMessageId.Error;
             return RedirectToAction("ManageLogins", new { Message = message });
         }
@@ -337,7 +342,7 @@ namespace PartsUnlimited.Controllers
         {
             foreach (var error in result.Errors)
             {
-                ModelState.AddModelError("", error);
+                ModelState.AddModelError("", error.Description);
             }
         }
 
@@ -355,15 +360,7 @@ namespace PartsUnlimited.Controllers
 
         private async Task<ApplicationUser> GetCurrentUserAsync()
         {
-            return await UserManager.FindByIdAsync(User.Identity.GetUserId());
-        }
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
+            return await _userManager.GetUserAsync(User);
         }
         #endregion
     }

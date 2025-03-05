@@ -1,240 +1,296 @@
-using Microsoft.Data.Entity.Relational.Migrations;
-using Microsoft.Data.Entity.Relational.Migrations.Builders;
-using Microsoft.Data.Entity.Relational.Migrations.MigrationsModel;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
 namespace PartsUnlimitedWebsite.Migrations
 {
     public partial class InitialMigration : Migration
     {
-        public override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.CreateTable("AspNetRoles",
-                c => new
-                    {
-                        Id = c.String(),
-                        ConcurrencyStamp = c.String(),
-                        Name = c.String(),
-                        NormalizedName = c.String()
-                    })
-                .PrimaryKey("PK_AspNetRoles", t => t.Id);
+    protected override void Up(MigrationBuilder migrationBuilder)
+    {
+        migrationBuilder.CreateTable(
+            name: "AspNetRoles",
+            columns: table => new
+            {
+                Id = table.Column<string>(nullable: true),
+                ConcurrencyStamp = table.Column<string>(nullable: true),
+                Name = table.Column<string>(nullable: true),
+                NormalizedName = table.Column<string>(nullable: true)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_AspNetRoles", x => x.Id);
+            });
             
-            migrationBuilder.CreateTable("AspNetRoleClaims",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        ClaimType = c.String(),
-                        ClaimValue = c.String(),
-                        RoleId = c.String()
-                    })
-                .PrimaryKey("PK_AspNetRoleClaims", t => t.Id);
+        migrationBuilder.CreateTable(
+            name: "AspNetRoleClaims",
+            columns: table => new
+            {
+                Id = table.Column<int>(nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
+                ClaimType = table.Column<string>(nullable: true),
+                ClaimValue = table.Column<string>(nullable: true),
+                RoleId = table.Column<string>(nullable: true)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_AspNetRoleClaims", x => x.Id);
+            });
             
-            migrationBuilder.CreateTable("AspNetUserClaims",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        ClaimType = c.String(),
-                        ClaimValue = c.String(),
-                        UserId = c.String()
-                    })
-                .PrimaryKey("PK_AspNetUserClaims", t => t.Id);
+        migrationBuilder.CreateTable(
+            name: "AspNetUserClaims",
+            columns: table => new
+            {
+                Id = table.Column<int>(nullable: false)
+                    .Annotation("SqlServer:Identity", "1, 1"),
+                ClaimType = table.Column<string>(nullable: true),
+                ClaimValue = table.Column<string>(nullable: true),
+                UserId = table.Column<string>(nullable: true)
+            },
+            constraints: table =>
+            {
+                table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+            });
             
-            migrationBuilder.CreateTable("AspNetUserLogins",
-                c => new
-                    {
-                        LoginProvider = c.String(),
-                        ProviderKey = c.String(),
-                        ProviderDisplayName = c.String(),
-                        UserId = c.String()
-                    })
-                .PrimaryKey("PK_AspNetUserLogins", t => new { t.LoginProvider, t.ProviderKey });
+            migrationBuilder.CreateTable(
+                name: "AspNetUserLogins",
+                columns: table => new
+                {
+                    LoginProvider = table.Column<string>(nullable: true),
+                    ProviderKey = table.Column<string>(nullable: true),
+                    ProviderDisplayName = table.Column<string>(nullable: true),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                });
             
             migrationBuilder.CreateTable("AspNetUserRoles",
                 c => new
                     {
-                        UserId = c.String(),
-                        RoleId = c.String()
+                        UserId = c.Column<string>(nullable: true),
+                        RoleId = c.Column<string>(nullable: true)
                     })
                 .PrimaryKey("PK_AspNetUserRoles", t => new { t.UserId, t.RoleId });
             
-            migrationBuilder.CreateTable("AspNetUsers",
-                c => new
-                    {
-                        Id = c.String(),
-                        AccessFailedCount = c.Int(nullable: false),
-                        ConcurrencyStamp = c.String(),
-                        Email = c.String(),
-                        EmailConfirmed = c.Boolean(nullable: false),
-                        LockoutEnabled = c.Boolean(nullable: false),
-                        LockoutEnd = c.DateTimeOffset(),
-                        Name = c.String(),
-                        NormalizedEmail = c.String(),
-                        NormalizedUserName = c.String(),
-                        PasswordHash = c.String(),
-                        PhoneNumber = c.String(),
-                        PhoneNumberConfirmed = c.Boolean(nullable: false),
-                        SecurityStamp = c.String(),
-                        TwoFactorEnabled = c.Boolean(nullable: false),
-                        UserName = c.String()
-                    })
-                .PrimaryKey("PK_AspNetUsers", t => t.Id);
+            migrationBuilder.CreateTable(
+                name: "AspNetUsers",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    ConcurrencyStamp = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
+                    LockoutEnabled = table.Column<bool>(nullable: false),
+                    LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    NormalizedEmail = table.Column<string>(nullable: true),
+                    NormalizedUserName = table.Column<string>(nullable: true),
+                    PasswordHash = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<string>(nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(nullable: false),
+                    SecurityStamp = table.Column<string>(nullable: true),
+                    TwoFactorEnabled = table.Column<bool>(nullable: false),
+                    UserName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
             
-            migrationBuilder.CreateTable("CartItem",
-                c => new
-                    {
-                        CartItemId = c.Int(nullable: false, identity: true),
-                        CartId = c.String(),
-                        Count = c.Int(nullable: false),
-                        DateCreated = c.DateTime(nullable: false),
-                        ProductId = c.Int(nullable: false)
-                    })
+            migrationBuilder.CreateTable(
+                name: "CartItem",
+                columns: table => new
+                {
+                    CartItemId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CartId = table.Column<string>(nullable: true),
+                    Count = table.Column<int>(nullable: false),
+                    DateCreated = table.Column<DateTime>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CartItem", x => x.CartItemId);
+                })
                 .PrimaryKey("PK_CartItem", t => t.CartItemId);
             
-            migrationBuilder.CreateTable("Category",
-                c => new
-                    {
-                        CategoryId = c.Int(nullable: false, identity: true),
-                        Description = c.String(),
-                        Name = c.String()
-                    })
-                .PrimaryKey("PK_Category", t => t.CategoryId);
+            migrationBuilder.CreateTable(
+                name: "Category",
+                columns: table => new
+                {
+                    CategoryId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Description = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Category", x => x.CategoryId);
+                });
             
-            migrationBuilder.CreateTable("Order",
-                c => new
-                    {
-                        OrderId = c.Int(nullable: false, identity: true),
-                        Address = c.String(),
-                        City = c.String(),
-                        Country = c.String(),
-                        Email = c.String(),
-                        Name = c.String(),
-                        OrderDate = c.DateTime(nullable: false),
-                        Phone = c.String(),
-                        PostalCode = c.String(),
-                        State = c.String(),
-                        Total = c.Decimal(nullable: false),
-                        Username = c.String()
-                    })
-                .PrimaryKey("PK_Order", t => t.OrderId);
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    OrderId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Address = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    OrderDate = table.Column<DateTime>(nullable: false),
+                    Phone = table.Column<string>(nullable: true),
+                    PostalCode = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    Total = table.Column<decimal>(nullable: false),
+                    Username = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.OrderId);
+                });
             
-            migrationBuilder.CreateTable("OrderDetail",
-                c => new
-                    {
-                        OrderDetailId = c.Int(nullable: false, identity: true),
-                        Quantity = c.Int(nullable: false),
-                        UnitPrice = c.Decimal(nullable: false),
-                        OrderId = c.Int(nullable: false),
-                        ProductId = c.Int(nullable: false)
-                    })
-                .PrimaryKey("PK_OrderDetail", t => t.OrderDetailId);
+            migrationBuilder.CreateTable(
+                name: "OrderDetail",
+                columns: table => new
+                {
+                    OrderDetailId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Quantity = table.Column<int>(nullable: false),
+                    UnitPrice = table.Column<decimal>(nullable: false),
+                    OrderId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderDetail", x => x.OrderDetailId);
+                });
             
-            migrationBuilder.CreateTable("Product",
-                c => new
-                    {
-                        ProductId = c.Int(nullable: false, identity: true),
-                        Created = c.DateTime(nullable: false),
-                        Price = c.Decimal(nullable: false),
-                        ProductArtUrl = c.String(),
-                        SalePrice = c.Decimal(nullable: false),
-                        Title = c.String(),
-                        CategoryId = c.Int(nullable: false)
-                    })
-                .PrimaryKey("PK_Product", t => t.ProductId);
+            migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Created = table.Column<DateTime>(nullable: false),
+                    Price = table.Column<decimal>(nullable: false),
+                    ProductArtUrl = table.Column<string>(nullable: true),
+                    SalePrice = table.Column<decimal>(nullable: false),
+                    Title = table.Column<string>(nullable: true),
+                    CategoryId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                });
             
-            migrationBuilder.CreateTable("Raincheck",
-                c => new
-                    {
-                        RaincheckId = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Quantity = c.Int(nullable: false),
-                        SalePrice = c.Double(nullable: false),
-                        StoreId = c.Int(nullable: false),
-                        ProductId = c.Int(nullable: false)
-                    })
-                .PrimaryKey("PK_Raincheck", t => t.RaincheckId);
+            migrationBuilder.CreateTable(
+                name: "Raincheck",
+                columns: table => new
+                {
+                    RaincheckId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Quantity = table.Column<int>(nullable: false),
+                    SalePrice = table.Column<double>(nullable: false),
+                    StoreId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Raincheck", x => x.RaincheckId);
+                });
             
-            migrationBuilder.CreateTable("Store",
-                c => new
-                    {
-                        StoreId = c.Int(nullable: false, identity: true),
-                        Name = c.String()
-                    })
-                .PrimaryKey("PK_Store", t => t.StoreId);
-            
-            migrationBuilder.AddForeignKey(
-                "AspNetRoleClaims",
-                "FK_AspNetRoleClaims_AspNetRoles_RoleId",
-                new[] { "RoleId" },
-                "AspNetRoles",
-                new[] { "Id" },
-                cascadeDelete: false);
-            
-            migrationBuilder.AddForeignKey(
-                "AspNetUserClaims",
-                "FK_AspNetUserClaims_AspNetUsers_UserId",
-                new[] { "UserId" },
-                "AspNetUsers",
-                new[] { "Id" },
-                cascadeDelete: false);
-            
-            migrationBuilder.AddForeignKey(
-                "AspNetUserLogins",
-                "FK_AspNetUserLogins_AspNetUsers_UserId",
-                new[] { "UserId" },
-                "AspNetUsers",
-                new[] { "Id" },
-                cascadeDelete: false);
-            
-            migrationBuilder.AddForeignKey(
-                "CartItem",
-                "FK_CartItem_Product_ProductId",
-                new[] { "ProductId" },
-                "Product",
-                new[] { "ProductId" },
-                cascadeDelete: false);
+            migrationBuilder.CreateTable(
+                name: "Store",
+                columns: table => new
+                {
+                    StoreId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Store", x => x.StoreId);
+                });
             
             migrationBuilder.AddForeignKey(
-                "OrderDetail",
-                "FK_OrderDetail_Order_OrderId",
-                new[] { "OrderId" },
-                "Order",
-                new[] { "OrderId" },
-                cascadeDelete: false);
+                name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
+                table: "AspNetRoleClaims",
+                column: "RoleId",
+                principalTable: "AspNetRoles",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "OrderDetail",
-                "FK_OrderDetail_Product_ProductId",
-                new[] { "ProductId" },
-                "Product",
-                new[] { "ProductId" },
-                cascadeDelete: false);
+                name: "FK_AspNetUserClaims_AspNetUsers_UserId",
+                table: "AspNetUserClaims",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "Product",
-                "FK_Product_Category_CategoryId",
-                new[] { "CategoryId" },
-                "Category",
-                new[] { "CategoryId" },
-                cascadeDelete: false);
+                name: "FK_AspNetUserLogins_AspNetUsers_UserId",
+                table: "AspNetUserLogins",
+                column: "UserId",
+                principalTable: "AspNetUsers",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "Raincheck",
-                "FK_Raincheck_Store_StoreId",
-                new[] { "StoreId" },
-                "Store",
-                new[] { "StoreId" },
-                cascadeDelete: false);
+                name: "FK_CartItem_Product_ProductId",
+                table: "CartItem",
+                column: "ProductId",
+                principalTable: "Product",
+                principalColumn: "ProductId",
+                onDelete: ReferentialAction.Restrict);
             
             migrationBuilder.AddForeignKey(
-                "Raincheck",
-                "FK_Raincheck_Product_ProductId",
-                new[] { "ProductId" },
-                "Product",
-                new[] { "ProductId" },
-                cascadeDelete: false);
+                name: "FK_OrderDetail_Order_OrderId",
+                table: "OrderDetail",
+                column: "OrderId",
+                principalTable: "Order",
+                principalColumn: "OrderId",
+                onDelete: ReferentialAction.Restrict);
+            
+            migrationBuilder.AddForeignKey(
+                name: "FK_OrderDetail_Product_ProductId",
+                table: "OrderDetail",
+                column: "ProductId",
+                principalTable: "Product",
+                principalColumn: "ProductId",
+                onDelete: ReferentialAction.Restrict);
+            
+            migrationBuilder.AddForeignKey(
+                name: "FK_Product_Category_CategoryId",
+                table: "Product",
+                column: "CategoryId",
+                principalTable: "Category",
+                principalColumn: "CategoryId",
+                onDelete: ReferentialAction.Restrict);
+            
+            migrationBuilder.AddForeignKey(
+                name: "FK_Raincheck_Store_StoreId",
+                table: "Raincheck",
+                column: "StoreId",
+                principalTable: "Store",
+                principalColumn: "StoreId",
+                onDelete: ReferentialAction.Restrict);
+            
+            migrationBuilder.AddForeignKey(
+                name: "FK_Raincheck_Product_ProductId",
+                table: "Raincheck",
+                column: "ProductId",
+                principalTable: "Product",
+                principalColumn: "ProductId",
+                onDelete: ReferentialAction.Restrict);
         }
         
-        public override void Down(MigrationBuilder migrationBuilder)
+        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey("AspNetRoleClaims", "FK_AspNetRoleClaims_AspNetRoles_RoleId");
             

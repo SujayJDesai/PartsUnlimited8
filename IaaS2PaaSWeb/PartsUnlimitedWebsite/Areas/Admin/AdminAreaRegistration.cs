@@ -1,22 +1,21 @@
-﻿using System.Web.Mvc;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
 
 namespace PartsUnlimited.Areas.Admin
 {
-    public class AdminAreaRegistration : AreaRegistration
+    public static class AdminAreaRegistration
     {
-        public override void RegisterArea(AreaRegistrationContext context)
+        public static void RegisterArea(IApplicationBuilder app)
         {
-            context.MapRoute(
-                "admin_default",
-                "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
-                namespaces: new string[] { "PartsUnlimited.Areas.Admin.Controllers" }
-            );
-        }
-
-        public override string AreaName
-        {
-            get { return AdminConstants.Area; }
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapAreaControllerRoute(
+                    name: "admin_default",
+                    areaName: AdminConstants.Area,
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}",
+                    defaults: new { area = AdminConstants.Area }
+                );
+            });
         }
     }
 }

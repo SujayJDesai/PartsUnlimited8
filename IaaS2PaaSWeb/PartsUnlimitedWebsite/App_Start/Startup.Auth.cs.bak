@@ -1,23 +1,27 @@
-﻿using System;
+using System;
 using System.Data.Entity;
 using System.Security.Claims;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.SignalR;
-using Microsoft.Owin;
-using Microsoft.Owin.Security.Cookies;
-using Microsoft.Owin.Security.DataProtection;
 using Microsoft.Owin.Security.Facebook;
-using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.MicrosoftAccount;
 using Microsoft.Owin.Security.Twitter;
-using Microsoft.Practices.Unity;
-using Owin;
 using PartsUnlimited.Areas.Admin;
 using PartsUnlimited.Models;
 using PartsUnlimited.Security;
 using PartsUnlimited.Utils;
+using Microsoft.AspNetCore.Identity;
+
+using Microsoft.AspNetCore.Owin;
+
+using Microsoft.AspNetCore.Authentication.Cookies;
+
+using Microsoft.AspNetCore.DataProtection;
+
+using Microsoft.AspNetCore.Authentication.Google;
+
+using Unity;
+
 
 namespace PartsUnlimited
 {

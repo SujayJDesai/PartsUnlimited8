@@ -1,8 +1,9 @@
-﻿using Microsoft.Practices.Unity;
 using PartsUnlimited.Models;
 using PartsUnlimited.ProductSearch;
 using PartsUnlimited.Recommendations;
 using PartsUnlimited.Utils;
+using Unity;
+
 
 namespace PartsUnlimited
 {

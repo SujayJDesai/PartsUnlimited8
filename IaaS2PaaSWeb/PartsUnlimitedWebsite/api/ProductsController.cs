@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
 using PartsUnlimited.Models;
-using System.Web.Mvc;
 
 namespace PartsUnlimited.Api
 {

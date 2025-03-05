@@ -1,12 +1,14 @@
-﻿using PartsUnlimited.Utils;
+using PartsUnlimited.Utils;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
 using PartsUnlimited.Models;
 using PartsUnlimited.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace PartsUnlimited.Controllers
 {
@@ -16,20 +18,22 @@ namespace PartsUnlimited.Controllers
         private readonly IOrdersQuery _ordersQuery;
         private readonly ITelemetryProvider _telemetry;
 		private readonly IShippingTaxCalculator _shippingTaxCalc;
+        private readonly UserManager<ApplicationUser> _userManager;
 
 		public OrdersController(IOrdersQuery ordersQuery, ITelemetryProvider telemetryProvider,
-			IShippingTaxCalculator shippingTaxCalc)
+			IShippingTaxCalculator shippingTaxCalc, UserManager<ApplicationUser> userManager)
         {
             _ordersQuery = ordersQuery;
             _telemetry = telemetryProvider;
 			_shippingTaxCalc = shippingTaxCalc;
+            _userManager = userManager;
         }
 
         public async Task<ActionResult> Index(DateTime? start, DateTime? end, string invalidOrderSearch)
         {
-            var username = User.Identity.GetUserName();
+            var userId = _userManager.GetUserId(User);
 
-            return View(await _ordersQuery.IndexHelperAsync(username, start, end, invalidOrderSearch, false));
+            return View(await _ordersQuery.IndexHelperAsync(userId, start, end, invalidOrderSearch, false));
         }
 
         public async Task<ActionResult> Details(int? id)
@@ -37,14 +41,14 @@ namespace PartsUnlimited.Controllers
             if (id == null)
             {
                 _telemetry.TrackTrace("Order/Server/NullId");
-                return RedirectToAction("Index", new { invalidOrderSearch = Request.QueryString["id"] });
+                return RedirectToAction("Index", new { invalidOrderSearch = Request.Query["id"].ToString() });
             }
 
             var order = await _ordersQuery.FindOrderAsync(id.Value);
-            var username = User.Identity.GetUserName();
+            var userId = _userManager.GetUserId(User);
 
             // If the username isn't the same as the logged in user, return as if the order does not exist
-            if (order == null || !String.Equals(order.Username, username, StringComparison.Ordinal))
+            if (order == null || !String.Equals(order.Username, userId, StringComparison.Ordinal))
             {
                 _telemetry.TrackTrace("Order/Server/UsernameMismatch");
                 return RedirectToAction("Index", new { invalidOrderSearch = id.ToString() });
@@ -54,7 +58,7 @@ namespace PartsUnlimited.Controllers
             var eventProperties = new Dictionary<string, string>()
                 {
                     {"Id", id.ToString() },
-                    {"Username", username }
+                    {"Username", userId }
                 };
             var costSummary = new OrderCostSummary()
             {

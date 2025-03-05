@@ -1,36 +1,46 @@
-﻿using System;
+using System;
 using System.Linq;
-using System.Runtime.Caching;
-using System.Web.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using PartsUnlimited.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace PartsUnlimited.Utils
 {
     public class LayoutDataAttribute : ActionFilterAttribute
     {
+        private readonly IPartsUnlimitedContext _dataContext;
+        private readonly IMemoryCache _memoryCache;
+
+        public LayoutDataAttribute(IPartsUnlimitedContext dataContext, IMemoryCache memoryCache)
+        {
+            _dataContext = dataContext;
+            _memoryCache = memoryCache;
+        }
+
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            var dataContext = DependencyResolver.Current.GetService<IPartsUnlimitedContext>();
-
-            var cart = ShoppingCart.GetCart(dataContext, filterContext.HttpContext);
+            var cart = ShoppingCart.GetCart(_dataContext, filterContext.HttpContext);
             var summary = cart.GetCartItems()
                 .Select(a => a.Product.Title)
                 .OrderBy(x => x)
                 .ToList();
 
-            var latestProduct = MemoryCache.Default["latestProduct"] as Product;
-            if (latestProduct == null)
+            if (!_memoryCache.TryGetValue("latestProduct", out Product latestProduct))
             {
-                latestProduct = dataContext.Products.OrderByDescending(a => a.Created).FirstOrDefault();
+                latestProduct = _dataContext.Products.OrderByDescending(a => a.Created).FirstOrDefault();
                 if (latestProduct != null)
                 {
-                    MemoryCache.Default.Add("latestProduct", latestProduct, DateTimeOffset.Now.AddMinutes(10));
+                    _memoryCache.Set("latestProduct", latestProduct, TimeSpan.FromMinutes(10));
                 }
             }
 
-            filterContext.Controller.ViewBag.Categories = dataContext.Categories.ToList();
-            filterContext.Controller.ViewBag.CartSummary = summary;
-            filterContext.Controller.ViewBag.Product = latestProduct;
+            if (filterContext.Controller is Controller controller)
+            {
+                controller.ViewBag.Categories = _dataContext.Categories.ToList();
+                controller.ViewBag.CartSummary = summary;
+                controller.ViewBag.Product = latestProduct;
+            }
         }
     }
 }
